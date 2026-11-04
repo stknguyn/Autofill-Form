@@ -20,12 +20,12 @@ from src.tally_schema import TallySchema
 # Design System Tokens (ui-ux-pro-max Slate & High Contrast)
 # ---------------------------------------------------------------------------
 SLATE_THEME: Dict[str, str] = {
-    "bg_canvas": "#0f172a",          # Slate 900
-    "bg_card": "#1e293b",            # Slate 800
-    "border": "#334155",             # Slate 700
-    "text_primary": "#f8fafc",       # Slate 50
-    "text_secondary": "#cbd5e1",     # Slate 300
-    "text_muted": "#94a3b8",         # Slate 400
+    "bg_canvas": "#0b1120",          # Slate 950 deep canvas
+    "bg_card": "#131d31",            # Slate 900 card surface
+    "border": "#1e293b",             # Slate 800 subtle borders
+    "text_primary": "#f8fafc",       # Slate 50 high contrast text
+    "text_secondary": "#cbd5e1",     # Slate 300 secondary
+    "text_muted": "#94a3b8",         # Slate 400 muted labels
     "primary_blue": "#3b82f6",       # Blue 500
     "primary_blue_light": "#60a5fa", # Blue 400
     "primary_fill": "rgba(59, 130, 246, 0.22)",
@@ -33,7 +33,7 @@ SLATE_THEME: Dict[str, str] = {
     "benchmark_fill": "rgba(16, 185, 129, 0.25)",
     "warning_amber": "#f59e0b",      # Amber 500
     "danger_rose": "#ef4444",        # Red 500
-    "font_family": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    "font_family": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
 }
 
 PLOTLY_CONFIG: Dict[str, Any] = {
