@@ -1,0 +1,1589 @@
+[
+  {
+    "groupUuid": "3e5a203f-e81c-45f4-88c8-70aa4cc36696",
+    "construct": "General",
+    "title": "Anh/Chị/ Bạn đã đọc và hiểu các thông tin về nghiên cứu, đồng thời đồng ý tự nguyện tham gia khảo sát này?",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "1b84910e-a410-455c-8595-f4f73c7ea7ff",
+        "text": "Tôi đã đọc hiểu thông tin và đồng ý tham gia khảo sát"
+      },
+      {
+        "uuid": "18b5cbd6-040e-4ef8-b213-7fc038f1e6df",
+        "text": "Tôi không đồng ý tham gia khảo sát"
+      }
+    ]
+  },
+  {
+    "groupUuid": "c2a8c967-6d50-4b90-981e-2b4acbb5af01",
+    "construct": "General",
+    "title": "Lần gần đây nhất anh/chị/bạn đặt hàng trên Shopee là khi nào?",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "9232238d-d74e-4520-85c4-f87c8b827c1c",
+        "text": "Mới mua hôm nay hoặc hôm qua"
+      },
+      {
+        "uuid": "15c0ab5e-e45d-4a8b-8234-3a6eb117898b",
+        "text": "Trong vòng 1 tuần trở lại đây"
+      },
+      {
+        "uuid": "0ed4d205-154f-4333-94ea-3c1cd02812bf",
+        "text": "Trong vòng 2 tuần đến 1 tháng trở lại đây"
+      },
+      {
+        "uuid": "cd8db0c7-34c8-4a41-a608-a7206f6ec8a9",
+        "text": "Từ 1 tháng đến 6 tháng trước"
+      },
+      {
+        "uuid": "ec6f15d1-7feb-49ef-aa4a-58b6c6a22d56",
+        "text": "Hơn 6 tháng trước"
+      },
+      {
+        "uuid": "42a1fc17-7d7a-4cc4-9eeb-3df094a64b86",
+        "text": "Tôi chưa bao giờ đặt hàng trên Shopee"
+      }
+    ]
+  },
+  {
+    "groupUuid": "e2948fdb-2d9a-413c-8a8b-96ff61314f0c",
+    "construct": "General",
+    "title": "Vui lòng chia sẻ lý do chính khiến bạn chưa bao giờ mua hàng trên Shopee? (Có thể chọn nhiều đáp án)",
+    "type": "CHECKBOXES",
+    "options": [
+      {
+        "uuid": "220f3429-a55c-4c37-9f04-774a30f220c6",
+        "text": "Tôi thích mua sắm trực tiếp tại cửa hàng hơn."
+      },
+      {
+        "uuid": "e59e966f-913e-47f4-b63e-92a99c35b2c7",
+        "text": "Tôi lo ngại về chất lượng sản phẩm / hàng giả, hàng nhái."
+      },
+      {
+        "uuid": "90536204-42ee-4375-80fd-96fdc0e00871",
+        "text": "Tôi gặp khó khăn hoặc không rành về cách sử dụng ứng dụng."
+      },
+      {
+        "uuid": "c710e391-45bc-4627-94e4-9890284872f5",
+        "text": "Tôi lo ngại về rủi ro thanh toán hoặc bảo mật thông tin cá nhân."
+      },
+      {
+        "uuid": "ddddb083-7f85-44cd-9829-709a5bc7104e",
+        "text": "Tôi đang sử dụng các nền tảng khác (Lazada, TikTok Shop, Tiki...) và không có nhu cầu dùng thêm."
+      },
+      {
+        "uuid": "80d509bf-e6f2-4634-b1ed-fdef8e021e0f",
+        "text": "Lý do khác "
+      }
+    ]
+  },
+  {
+    "groupUuid": "d8ec1647-4508-481b-b8ea-302737d9a5e9",
+    "construct": "General",
+    "title": "1. Tuổi hiện tại của Anh/Chị/Bạn (Vui lòng chỉ điền số, ví dụ: 21):",
+    "type": "INPUT_NUMBER",
+    "options": []
+  },
+  {
+    "groupUuid": "7320b9c3-a3ee-462a-b7a3-a7ca1098f66a",
+    "construct": "General",
+    "title": "3. Giới tính của Anh/Chị/Bạn:",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "7a33c383-e672-4bdc-97e1-985ba902247d",
+        "text": "Nam"
+      },
+      {
+        "uuid": "428cad0c-6d8e-4f12-bbec-8c593b428fc4",
+        "text": "Nữ"
+      },
+      {
+        "uuid": "200936e3-785a-4d5b-8c00-226b5ca1735a",
+        "text": "Khác"
+      }
+    ]
+  },
+  {
+    "groupUuid": "62a19387-f711-4a1e-9a81-950342ee232b",
+    "construct": "General",
+    "title": "4. Hiện tại Anh/Chị/Bạn đang sinh sống tại khu vực nào?",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "a1561c8f-20a1-4571-b447-a23943e98f0c",
+        "text": "Thành phố Hà Nội"
+      },
+      {
+        "uuid": "4d4962c3-86f5-4d5b-bc59-536d23df2db5",
+        "text": "Thành phố Đà Nẵng"
+      },
+      {
+        "uuid": "78ef19e6-8b27-4801-ae86-30118c8f333b",
+        "text": "Thành phố Hồ Chí Minh"
+      },
+      {
+        "uuid": "5e069c99-7562-4c9d-88d8-af4fc3a197d9",
+        "text": "Tỉnh / Thành phố khác"
+      }
+    ]
+  },
+  {
+    "groupUuid": "59ece19f-f02e-47f6-876b-e5dbc884fe21",
+    "construct": "General",
+    "title": "5. Trình độ học vấn hiện tại của Anh/Chị/Bạn:",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "5d437e74-b829-4faf-bdac-50b0f469cfcc",
+        "text": "Từ Trung học phổ thông (THPT) trở xuống"
+      },
+      {
+        "uuid": "0a44e9b4-7d64-47b9-8c7b-35f86ff37d69",
+        "text": "Trung cấp / Đào tạo nghề"
+      },
+      {
+        "uuid": "7db417a3-7660-47d7-b2bc-f61382beed19",
+        "text": "Cao đẳng / Đại học"
+      },
+      {
+        "uuid": "e331248b-bd83-4a1e-a165-ef253eb31caf",
+        "text": "Sau Đại học (Thạc sĩ, Tiến sĩ,...)"
+      },
+      {
+        "uuid": "a31a2b45-dacb-4700-b2f7-d6b5e3ddd6c8",
+        "text": "Khác (Vui lòng ghi rõ)"
+      }
+    ]
+  },
+  {
+    "groupUuid": "bf78cd4f-824d-4b02-9d46-1a915edd1204",
+    "construct": "General",
+    "title": "6. Tình trạng việc làm hiện tại của Anh/Chị/Bạn:",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "af1929cf-8d02-4c2a-b152-33facb89b2ae",
+        "text": "Đang làm việc bán thời gian (Part-time)"
+      },
+      {
+        "uuid": "226d694d-7ba6-4dfc-a600-ad508d32a2fd",
+        "text": "Đang làm việc toàn thời gian (Full-time)"
+      },
+      {
+        "uuid": "690cab48-5280-4e7c-91c8-bf2b8b751d35",
+        "text": "Làm việc tự do (Freelancer)"
+      },
+      {
+        "uuid": "5bceec63-270c-4305-b399-834a1ef7244c",
+        "text": "Đang tìm kiếm việc làm"
+      },
+      {
+        "uuid": "ff63da71-296c-4e14-9bb7-26a2afb35458",
+        "text": "Không trong lực lượng lao động"
+      },
+      {
+        "uuid": "87bdb602-4a9b-43cf-9f73-22af4be99496",
+        "text": "Khác (Vui lòng ghi rõ)"
+      }
+    ]
+  },
+  {
+    "groupUuid": "ed7f2c7d-2664-4a4f-b35e-fd3d81543f17",
+    "construct": "General",
+    "title": "7. Lĩnh vực học tập hoặc nghề nghiệp chính hiện tại của Anh/Chị/Bạn:",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "8983e9f9-8b76-4320-bc85-6d9d37e6b9db",
+        "text": "Kinh doanh / Thương mại / Marketing / Dịch vụ"
+      },
+      {
+        "uuid": "e02f9cb1-2892-403e-a6e9-389b6dad9920",
+        "text": "Kỹ thuật / Công nghệ thông tin"
+      },
+      {
+        "uuid": "2469248c-24c6-4fe6-ac3c-d4a45aef7d1d",
+        "text": "Sản xuất"
+      },
+      {
+        "uuid": "098f87c2-1557-4a1a-94a7-e0ab31fe125e",
+        "text": "Giáo dục"
+      },
+      {
+        "uuid": "6ee6cb19-bfc4-4bb9-8680-b351b0351535",
+        "text": "Viên chức nhà nước"
+      },
+      {
+        "uuid": "22d795f4-c56a-48af-9459-3299fcc47a8b",
+        "text": "Lực lượng vũ trang (Quân đội / Công an)"
+      },
+      {
+        "uuid": "d4685d75-46a3-4954-8588-d4fed0921c5a",
+        "text": "Lao động tự do / Sáng tạo nội dung"
+      },
+      {
+        "uuid": "ac6208be-c0bf-4f2e-bcb0-1f195b64bbe5",
+        "text": "Lĩnh vực khác (Vui lòng ghi rõ)"
+      }
+    ]
+  },
+  {
+    "groupUuid": "ee7dac3f-e7d7-45c1-9763-7df533d54930",
+    "construct": "General",
+    "title": "8. Trong vòng 6 tháng gần đây, tần suất mua hàng trên Shopee của anh/chị/bạn là:",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "338ca9ac-a9be-4f70-8d8d-52bf6c9cd1c8",
+        "text": "Dưới 2 đơn hàng/tháng"
+      },
+      {
+        "uuid": "715ebb81-cfee-43f1-bf78-de86368dbac0",
+        "text": "Từ 2 – 4 đơn hàng/tháng"
+      },
+      {
+        "uuid": "3ead4f73-ee69-496c-8872-d4df6d53d89b",
+        "text": "Từ 4 – 6 đơn hàng/tháng"
+      },
+      {
+        "uuid": "cf2b1d3d-5307-4220-a6b9-9649ee940d75",
+        "text": "Từ 6 – 8 đơn hàng/tháng"
+      },
+      {
+        "uuid": "d5586e4c-5b04-4174-8200-3162232169b7",
+        "text": "Trên 8 đơn hàng/tháng"
+      }
+    ]
+  },
+  {
+    "groupUuid": "c1dc93e6-0cc1-43dd-9a99-4a6192d3dab7",
+    "construct": "General",
+    "title": "9. Các nhóm mặt hàng Anh/Chị/Bạn thường đặt mua trên Shopee là (có thể chọn nhiều nội dung):",
+    "type": "CHECKBOXES",
+    "options": [
+      {
+        "uuid": "78d7ded3-bcdf-4733-8827-45afee38f3f8",
+        "text": "Thời trang, quần áo và phụ kiện"
+      },
+      {
+        "uuid": "5d64fce1-3540-47ad-af8d-18cacdcbdc0c",
+        "text": "Mỹ phẩm, sản phẩm chăm sóc sức khỏe và làm đẹp"
+      },
+      {
+        "uuid": "5cc24510-0e1e-4b47-b10f-cbe4771fbb98",
+        "text": "Thiết bị điện tử và phụ kiện công nghệ"
+      },
+      {
+        "uuid": "24a04efa-df7b-4633-b71a-273b778c1428",
+        "text": "Sách vở, văn phòng phẩm"
+      },
+      {
+        "uuid": "325c0103-7cc6-4ba5-a243-78bc997fec08",
+        "text": "Đồ gia dụng, thực phẩm đóng gói và bách hóa"
+      },
+      {
+        "uuid": "9d0b358f-ac81-41eb-aed7-2489607167ac",
+        "text": "Khác"
+      }
+    ]
+  },
+  {
+    "groupUuid": "2e164c14-6be1-4757-84dd-5c9d5fb098fb",
+    "construct": "General",
+    "title": "10. Anh/chị/bạn vui lòng chia sẻ các bất tiện khi đặt đơn hàng giao tới nơi ở/ nơi làm việc (có thể chọn nhiều nội dung):",
+    "type": "CHECKBOXES",
+    "options": [
+      {
+        "uuid": "3a21da3a-44b5-4f40-8113-665f811f54d2",
+        "text": "Chung cư / Ký túc xá / Văn phòng không cho phép gửi hàng ở quầy lễ tân hoặc bảo vệ"
+      },
+      {
+        "uuid": "a410ef25-369e-4a45-a8f7-7237c8a6f102",
+        "text": "Lo ngại lộ thông tin địa chỉ nhà riêng hoặc sợ mất hàng khi nhờ người khác nhận hộ"
+      },
+      {
+        "uuid": "77ae6712-d5be-4f69-8612-2f32e0db7900",
+        "text": "Không gặp bất tiện nào, luôn có người nhận hàng tại nhà"
+      },
+      {
+        "uuid": "9d4539b3-d3cf-44ea-aa96-1ef047f726f8",
+        "text": "Khác"
+      }
+    ]
+  },
+  {
+    "groupUuid": "0048f395-2c46-4ac1-89c6-029125232f2d",
+    "construct": "General",
+    "title": "11. Mức độ nhận biết và trải nghiệm của Anh/Chị/Bạn đối với dịch vụ Lấy hàng chủ động (Tại Điểm nhận hàng / Tủ nhận hàng) trên Shopee hiện nay là:",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "7edb7ecf-d8ff-4a9f-919d-5bd76108a63d",
+        "text": "Chưa từng nghe đến trước đây (Mới biết thông qua phần giới thiệu của khảo sát này)"
+      },
+      {
+        "uuid": "111f08e5-cc2b-409e-8ae5-60e97882c9d0",
+        "text": "Đã từng nghe nói hoặc nhìn thấy tùy chọn này trên Shopee nhưng chưa từng sử dụng"
+      },
+      {
+        "uuid": "e885b776-6064-4998-bf6c-4a886cc6cb5e",
+        "text": "Đã từng sử dụng ít nhất 1 lần để nhận đơn hàng Shopee"
+      },
+      {
+        "uuid": "16be7add-9da3-4489-a769-077d36eb26c1",
+        "text": "Khác (ví dụ: đã từng sử dụng dịch vụ giao hàng này nhưng ở sàn thương mại điện tử khác,…)"
+      }
+    ]
+  },
+  {
+    "groupUuid": "748c69c8-0062-4bd3-9587-f76778ca3117",
+    "construct": "Perceived Usefulness: Nhận thức về sự hữu ích",
+    "title": "1. Tôi tin rằng việc sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee mang lại sự thuận tiện khi nhận các kiện hàng của mình.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "3bbbb0a1-38a1-404a-b4a0-0c20523a3fc0",
+        "text": "1"
+      },
+      {
+        "uuid": "dfba4e75-88b1-4f04-8c3b-bd94cd26b1eb",
+        "text": "2"
+      },
+      {
+        "uuid": "45a47b78-4eca-48a0-b028-18bdb1a7f9c4",
+        "text": "3"
+      },
+      {
+        "uuid": "9061ff03-58c2-4ec3-b8c1-f4592f5a8d9a",
+        "text": "4"
+      },
+      {
+        "uuid": "42e3cad3-e709-430c-a698-0502d747650d",
+        "text": "5"
+      },
+      {
+        "uuid": "b1f91e1a-3045-430b-a03b-275acb5c0ddd",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "cfd7547c-1220-46ca-870d-4af76e685dd1",
+    "construct": "Perceived Usefulness: Nhận thức về sự hữu ích",
+    "title": "2. Tôi tin rằng việc sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee có thể cải thiện chất lượng trải nghiệm nhận hàng của tôi.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "89e78749-302c-49b1-a62d-90a8a9c968ec",
+        "text": "1"
+      },
+      {
+        "uuid": "f3a3b70e-914d-4aa7-a209-21b0b1c67500",
+        "text": "2"
+      },
+      {
+        "uuid": "2afd94ff-6959-4eaa-bed8-33b516b10fff",
+        "text": "3"
+      },
+      {
+        "uuid": "33a5182a-4cf9-45c4-8d4a-cdba2185a917",
+        "text": "4"
+      },
+      {
+        "uuid": "6873bf54-5274-4f1f-917a-a50521225ae1",
+        "text": "5"
+      },
+      {
+        "uuid": "d330ffc7-7c3c-4318-8a73-8b9eff105690",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "fb551cba-9738-4f70-a16c-2a366fb5a5e1",
+    "construct": "Perceived Usefulness: Nhận thức về sự hữu ích",
+    "title": "3. Tôi tin rằng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee đáp ứng được các yêu cầu của tôi khi nhận kiện hàng.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "b7b14e42-0781-4bcb-84de-4f719a88d32c",
+        "text": "1"
+      },
+      {
+        "uuid": "a6d7dab3-acfd-4afb-a83b-ff0f630438ff",
+        "text": "2"
+      },
+      {
+        "uuid": "566fd799-5d58-45d5-b17d-f1ae94cb4ef3",
+        "text": "3"
+      },
+      {
+        "uuid": "860aa0d7-d1f9-4613-8eb0-7468be6ae54e",
+        "text": "4"
+      },
+      {
+        "uuid": "30d2fd6a-5e95-4e87-8ba4-cf83e693d789",
+        "text": "5"
+      },
+      {
+        "uuid": "eed293b1-d0c8-4548-8f18-be58719f76c8",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "51b64024-e21d-454a-8224-c17e9e673586",
+    "construct": "Perceived Usefulness: Nhận thức về sự hữu ích",
+    "title": "4. Nhìn chung, tôi tin rằng việc sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee là hữu ích.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "1420608a-62a8-463a-aaf9-f58185c801af",
+        "text": "1"
+      },
+      {
+        "uuid": "50634150-ef02-47ca-8d03-80aa6afe1c78",
+        "text": "2"
+      },
+      {
+        "uuid": "282f8c43-0e4b-422b-81f6-d874d98b3061",
+        "text": "3"
+      },
+      {
+        "uuid": "0d3fb350-5104-4260-975c-8385b5811580",
+        "text": "4"
+      },
+      {
+        "uuid": "bb83c5e2-89cf-4a24-bdf7-3d428bda705b",
+        "text": "5"
+      },
+      {
+        "uuid": "f45486d0-5b9f-4b32-9060-9f1685db7ffe",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "bbc7997b-122d-41ed-beb3-66b78a862ecf",
+    "construct": "Perceived Ease of Use: Nhận thức về tính dễ sử dụng",
+    "title": "5. Tôi tin rằng rất dễ để học cách sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "55f79ee8-db52-4d40-8537-d0715bc4d8e8",
+        "text": "1"
+      },
+      {
+        "uuid": "ab83696c-fb02-429b-9ef7-e9dd4f3e5d6d",
+        "text": "2"
+      },
+      {
+        "uuid": "e5dc1c8e-c278-4d0a-a68e-a3d7ba7fd876",
+        "text": "3"
+      },
+      {
+        "uuid": "c5d0d17d-5f6d-4f03-84c1-f61634510853",
+        "text": "4"
+      },
+      {
+        "uuid": "b111404f-0204-4be7-8430-458ed7b16ae5",
+        "text": "5"
+      },
+      {
+        "uuid": "5943172c-304d-4357-978c-957a122c32a7",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "7c5050d9-7d3b-465e-948b-f138d4aeb344",
+    "construct": "Perceived Ease of Use: Nhận thức về tính dễ sử dụng",
+    "title": "6. Tôi tin rằng các hướng dẫn sử dụng của dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee rất rõ ràng, dễ hiểu.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "c78a216b-e971-470f-a9d9-4562348c0f9f",
+        "text": "1"
+      },
+      {
+        "uuid": "327e4f0a-f908-47a9-ae99-eacb7361f68d",
+        "text": "2"
+      },
+      {
+        "uuid": "ae1602d2-872d-4221-9d8c-7b47a7777d39",
+        "text": "3"
+      },
+      {
+        "uuid": "3104c967-e8a6-4ce4-baae-c6982cd2673b",
+        "text": "4"
+      },
+      {
+        "uuid": "9e9c1458-1b53-4516-8946-10e9ac6a5104",
+        "text": "5"
+      },
+      {
+        "uuid": "882e6d84-895a-4ac5-bda3-7c7b77d951a2",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "957cd323-18d5-4165-ade9-05a9ead9a278",
+    "construct": "Perceived Ease of Use: Nhận thức về tính dễ sử dụng",
+    "title": "7. Tôi tin rằng các chức năng của dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee rất đơn giản, dễ thao tác.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "ff697956-fbf6-42a6-bce7-dff50438a997",
+        "text": "1"
+      },
+      {
+        "uuid": "26fd7788-69e2-4d9b-90e3-11078cc8ccb3",
+        "text": "2"
+      },
+      {
+        "uuid": "20c49ba6-d634-4f93-9509-f36d769a2cac",
+        "text": "3"
+      },
+      {
+        "uuid": "fae7e2ab-c255-4b02-b547-1a29ea5f6ace",
+        "text": "4"
+      },
+      {
+        "uuid": "8b05b628-f8eb-4b82-8580-c67227a2132d",
+        "text": "5"
+      },
+      {
+        "uuid": "05e8fc2b-08c2-49e3-90c4-ad60a8e5ec89",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "b831ee05-2c6a-495d-81de-84a7cb16c9fd",
+    "construct": "Perceived Ease of Use: Nhận thức về tính dễ sử dụng",
+    "title": "8. Nhìn chung, tôi tin rằng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee rất dễ sử dụng.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "581c99a7-ab3e-442d-93be-3121ce8d4e4a",
+        "text": "1"
+      },
+      {
+        "uuid": "b542efc1-97d0-4295-ae4c-d932891dd3b2",
+        "text": "2"
+      },
+      {
+        "uuid": "dd0af23f-03cc-4cca-b083-aa2c33b55b13",
+        "text": "3"
+      },
+      {
+        "uuid": "f0883783-aa9a-4b36-895b-1fd110320fb0",
+        "text": "4"
+      },
+      {
+        "uuid": "edc25cbe-05f0-44a3-bc05-bca2894c5644",
+        "text": "5"
+      },
+      {
+        "uuid": "5fe940e1-f141-44d8-8f2d-597060980c33",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "ace24688-749b-4683-9e5f-27c2ac489bf7",
+    "construct": "Perceived Environmental Sustainability: Nhận thức về tính bền vững môi trường",
+    "title": "9. Tôi cho rằng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee giúp tiết kiệm các nguồn tài nguyên thiên nhiên.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "f83e6014-d9dc-43cd-87a2-2ba7ae1994db",
+        "text": "1"
+      },
+      {
+        "uuid": "c4cc9005-9446-4c52-a939-fef1ac82ddf7",
+        "text": "2"
+      },
+      {
+        "uuid": "a1a35510-e178-4493-80b3-dd85ad3c028b",
+        "text": "3"
+      },
+      {
+        "uuid": "5dc96a97-8e8f-4a1b-950f-c07e2fc350ea",
+        "text": "4"
+      },
+      {
+        "uuid": "01d9438d-1247-4f57-9bcf-2e83c2f0a7bf",
+        "text": "5"
+      },
+      {
+        "uuid": "06bcba6f-8ecd-4af3-8261-52fdd4b7fdc6",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "8e2a4db0-dd93-477f-b21e-a05dc543fd3b",
+    "construct": "Perceived Environmental Sustainability: Nhận thức về tính bền vững môi trường",
+    "title": "10. Tôi cho rằng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee tạo ra ít lượng khí thải carbon hơn so với các phương thức giao hàng khác.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "9eaeb79e-e605-4520-b89d-04faad24c638",
+        "text": "1"
+      },
+      {
+        "uuid": "e8685a0f-02d5-472b-935b-34da5945f90f",
+        "text": "2"
+      },
+      {
+        "uuid": "203029ed-f7f3-4ee2-a8b7-d3dbf2c6ce68",
+        "text": "3"
+      },
+      {
+        "uuid": "77e9c655-1b7c-4a55-a3e0-7d4f4fd1c533",
+        "text": "4"
+      },
+      {
+        "uuid": "2eaa964f-70be-4247-a45c-232b9c60522f",
+        "text": "5"
+      },
+      {
+        "uuid": "a2eba3b2-15cd-44bc-8db7-a2db8bcfde11",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "e80d7db5-eff9-4ba5-91f4-9bb6477a606d",
+    "construct": "Perceived Environmental Sustainability: Nhận thức về tính bền vững môi trường",
+    "title": "11. Tôi cho rằng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee là một phương thức giao nhận thân thiện với môi trường.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "635dcd5e-756a-4773-ae5a-9ff595a877a9",
+        "text": "1"
+      },
+      {
+        "uuid": "f6819bf5-32fa-405c-ab19-ad04c7e1e6f5",
+        "text": "2"
+      },
+      {
+        "uuid": "e2a4e1ae-5a95-4e23-a6c4-51e1a0aaedce",
+        "text": "3"
+      },
+      {
+        "uuid": "a57e65f0-9428-43ef-a171-fec280771446",
+        "text": "4"
+      },
+      {
+        "uuid": "20f77973-55c5-4f52-80fa-b77f991bdd82",
+        "text": "5"
+      },
+      {
+        "uuid": "c32cc67b-012a-4cea-a90f-02c038b4cbbc",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "c802b48b-eb6b-4b80-8038-18c6d705cb4a",
+    "construct": "Perceived Environmental Sustainability: Nhận thức về tính bền vững môi trường",
+    "title": "12. Tôi cho rằng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee là một giải pháp giao nhận có lợi cho hệ sinh thái.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "2c207641-1e99-4478-b9ff-350866102a29",
+        "text": "1"
+      },
+      {
+        "uuid": "18fbb05a-4562-472b-9faa-49388e23005a",
+        "text": "2"
+      },
+      {
+        "uuid": "af104005-88e7-4941-9cef-e7ba38e5a515",
+        "text": "3"
+      },
+      {
+        "uuid": "bdab70d2-ddf9-4a0e-a635-248d15a5927b",
+        "text": "4"
+      },
+      {
+        "uuid": "b5e0f8c2-67b3-4f05-a78e-d184b5becc45",
+        "text": "5"
+      },
+      {
+        "uuid": "0d7afcd4-94a9-41d9-be55-6fd0f7328595",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "985711c7-1796-44aa-af77-4b98b65fb747",
+    "construct": "Perceived Costs: Nhận thức về chi phí",
+    "title": "13. Tôi nghĩ rằng phương thức lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee tốn kém hơn so với các phương thức giao hàng khác.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "13778ba1-0110-48cb-8737-a361aa16199d",
+        "text": "1"
+      },
+      {
+        "uuid": "770297c1-41ad-4108-abe8-d9fc1fa219c9",
+        "text": "2"
+      },
+      {
+        "uuid": "abbd2731-c6c0-43d3-bccd-f11a7e18c09d",
+        "text": "3"
+      },
+      {
+        "uuid": "0e2bfecd-66ce-4a5e-82e9-b4e488bdd5d7",
+        "text": "4"
+      },
+      {
+        "uuid": "3418237c-e0dc-4fa3-b1d1-76e68998c14a",
+        "text": "5"
+      },
+      {
+        "uuid": "3e75537d-fd09-493b-9307-ff55777fd2be",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "e1f17849-dda8-47c2-be7c-2c4a8c6a2729",
+    "construct": "Perceived Costs: Nhận thức về chi phí",
+    "title": "14. Tôi nghĩ rằng chi phí giao nhận vận chuyển của dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee đắt hơn so với các phương thức giao hàng khác.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "04a8940f-75c8-4e50-a924-1e23a525dbd6",
+        "text": "1"
+      },
+      {
+        "uuid": "88c92b89-f152-472e-91f9-98a7f535da58",
+        "text": "2"
+      },
+      {
+        "uuid": "6138e213-78b5-4051-94dd-4bc76d355526",
+        "text": "3"
+      },
+      {
+        "uuid": "18730c45-da96-430e-b1ad-6e1656891a1f",
+        "text": "4"
+      },
+      {
+        "uuid": "b96dcd4a-33a9-431d-a442-c87e2faf2de0",
+        "text": "5"
+      },
+      {
+        "uuid": "62c5e6fc-35a5-4b7b-b072-d75cbacbd25e",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "6c0eb268-3e17-4747-88b2-9a1cbee613a9",
+    "construct": "Perceived Costs: Nhận thức về chi phí",
+    "title": "15. Tôi nghĩ rằng quá trình sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee gây tốn kém cho tôi hơn so với các phương thức giao hàng khác.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "8e666f4a-f452-418a-814c-7182796e2d1f",
+        "text": "1"
+      },
+      {
+        "uuid": "3ad9a2a7-8977-40a1-9a7a-a65d65beeac1",
+        "text": "2"
+      },
+      {
+        "uuid": "a6666817-7635-43e3-89d1-b260133e095b",
+        "text": "3"
+      },
+      {
+        "uuid": "4e6a503f-8bb6-4cbf-9d3a-8ded1a689188",
+        "text": "4"
+      },
+      {
+        "uuid": "8daf5631-d187-49d0-903c-17661a1d922e",
+        "text": "5"
+      },
+      {
+        "uuid": "3249340c-ef27-4b6c-b915-6c94c134a2ff",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "fe470f25-b119-43dd-9252-0370415f7e4e",
+    "construct": "Peer Influence: Ảnh hưởng từ người xung quanh",
+    "title": "16. Gia đình, bạn bè và bạn học hoặc đồng nghiệp khuyên tôi nên sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee để nhận kiện hàng.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "3469b6e0-78ba-4a7d-bd07-0a325b638083",
+        "text": "1"
+      },
+      {
+        "uuid": "acfd182d-c91c-4acd-a420-383e9e26744e",
+        "text": "2"
+      },
+      {
+        "uuid": "028bb089-a194-4f3a-8309-042bcfeff120",
+        "text": "3"
+      },
+      {
+        "uuid": "0490dbfc-f942-4d18-bf0b-9153f7760301",
+        "text": "4"
+      },
+      {
+        "uuid": "791fb1e9-b907-44b3-8cb4-ac91d43ef08e",
+        "text": "5"
+      },
+      {
+        "uuid": "f6c107ba-1d83-4352-84f6-6ff20fe5a931",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "ec2d6dec-f199-48b9-a8e7-6e32e0bbd21d",
+    "construct": "Peer Influence: Ảnh hưởng từ người xung quanh",
+    "title": "17. Những lời gợi ý từ gia đình, bạn bè và bạn học hoặc đồng nghiệp ảnh hưởng đến sự sẵn lòng sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee của tôi.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "34235284-66dd-4b51-9e16-63a86db59bad",
+        "text": "1"
+      },
+      {
+        "uuid": "b8fb681a-55d0-44aa-a849-9cdf433c687a",
+        "text": "2"
+      },
+      {
+        "uuid": "b9ed46e3-4a8a-4162-92dc-d7bc356ceebc",
+        "text": "3"
+      },
+      {
+        "uuid": "bc828e97-aa7f-4141-84ce-588cb0f410a9",
+        "text": "4"
+      },
+      {
+        "uuid": "0ea6f3bf-9ae5-4b2c-b872-357e3f184f7d",
+        "text": "5"
+      },
+      {
+        "uuid": "5e8de00c-8f02-496e-8930-589c5dff5ee8",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "d514edac-9614-40bd-8b1e-6f29ccf9f899",
+    "construct": "Peer Influence: Ảnh hưởng từ người xung quanh",
+    "title": "18. Đối với tôi, ý kiến của gia đình, bạn bè và bạn học hoặc đồng nghiệp đóng vai trò quan trọng trong quyết định sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "b9753e94-cf4a-4ece-a5a4-0cf51462a26b",
+        "text": "1"
+      },
+      {
+        "uuid": "07e9d4de-9907-430e-b3ed-c9c2d66b10f2",
+        "text": "2"
+      },
+      {
+        "uuid": "a910a50d-b6d7-4bb4-a466-dc4553b74f0c",
+        "text": "3"
+      },
+      {
+        "uuid": "56c80356-5cea-4584-8a2e-ebbb4cad81e8",
+        "text": "4"
+      },
+      {
+        "uuid": "b6bbbf7c-9a1d-49bc-9305-9bef8183e8c1",
+        "text": "5"
+      },
+      {
+        "uuid": "6e0cb6d7-f302-48cd-8f3d-c59375dae625",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "0a8606c8-e08c-4546-b94a-d674dd2bc5a3",
+    "construct": "Self-Efficacy: Sự tự tin vào năng lực bản thân",
+    "title": "19. Tôi có thể dễ dàng tự mình thao tác sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee để lấy kiện hàng.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "c81f62a6-3986-4533-8db6-6336d5220987",
+        "text": "1"
+      },
+      {
+        "uuid": "124e7eea-a2d4-4541-8899-7cb295e84de9",
+        "text": "2"
+      },
+      {
+        "uuid": "3067c301-6a59-4d90-bf91-e54349fdf76e",
+        "text": "3"
+      },
+      {
+        "uuid": "2a0348dc-824e-4585-9c32-7f66f7cfccee",
+        "text": "4"
+      },
+      {
+        "uuid": "be4a3177-cdf8-447d-aa81-827b226a07dc",
+        "text": "5"
+      },
+      {
+        "uuid": "d8e519d2-5137-4240-aef1-6a2b89f75e4f",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "4e5c1268-9788-447b-b9b5-6ee91c39cf04",
+    "construct": "Self-Efficacy: Sự tự tin vào năng lực bản thân",
+    "title": "20. Tôi có khả năng sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee một cách độc lập.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "58e9559c-3553-4b58-9135-ec82cb140a23",
+        "text": "1"
+      },
+      {
+        "uuid": "8a3c9cfd-c401-4363-8387-4eca9abd4b6b",
+        "text": "2"
+      },
+      {
+        "uuid": "49b59162-4df0-4cbd-8211-aa7de65e7408",
+        "text": "3"
+      },
+      {
+        "uuid": "0819056e-65b4-4c32-8337-d0fb858a40ff",
+        "text": "4"
+      },
+      {
+        "uuid": "80b0aea1-d04c-4ab0-86f4-d481b9f0b064",
+        "text": "5"
+      },
+      {
+        "uuid": "15aa6459-a851-483e-b878-a21cc0bb0d5b",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "c27e1c42-38e9-44c0-96ce-081f62b64d2e",
+    "construct": "Self-Efficacy: Sự tự tin vào năng lực bản thân",
+    "title": "21. Tôi có thể dễ dàng điều hướng các tính năng khác nhau trên giao diện của dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "a000737e-e2cb-4d43-a7a4-8a357a940364",
+        "text": "1"
+      },
+      {
+        "uuid": "c474b91b-151b-46bf-abc1-86f559787700",
+        "text": "2"
+      },
+      {
+        "uuid": "2c150f0d-c7d9-4bd4-8ddf-beaac907ed88",
+        "text": "3"
+      },
+      {
+        "uuid": "8a19d538-8196-48b3-8049-0c0a5d365145",
+        "text": "4"
+      },
+      {
+        "uuid": "8cc657c4-ca4b-4f42-94ec-3bfdb32f7242",
+        "text": "5"
+      },
+      {
+        "uuid": "3742cebe-ade7-4e62-870a-1459259030e5",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "4b88261d-b83f-4f69-af04-ac4babf9cbfd",
+    "construct": "Self-Efficacy: Sự tự tin vào năng lực bản thân",
+    "title": "22. Tôi tự tin vào khả năng tự thao tác sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee ngay cả khi không có người làm mẫu hay hướng dẫn.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "3429cee9-2cba-4456-9ea0-3fdb19b825c2",
+        "text": "1"
+      },
+      {
+        "uuid": "eb7072f3-c74a-4248-a662-f0e111e5a5fa",
+        "text": "2"
+      },
+      {
+        "uuid": "e2651088-b21b-4782-a96c-3d7d045f1e32",
+        "text": "3"
+      },
+      {
+        "uuid": "316e494c-d21b-4826-9b4a-9a93d5cc6aa4",
+        "text": "4"
+      },
+      {
+        "uuid": "13ff9be2-8688-4f1b-a8a7-361eef83e313",
+        "text": "5"
+      },
+      {
+        "uuid": "d0f35fbc-939e-4926-9908-1db4b73265b7",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "b7543b32-91e5-4ba2-9b06-faa3119d16af",
+    "construct": "Location Convenience: Sự thuận tiện về vị trí",
+    "title": "23. Việc có Tủ nhận hàng hoặc Điểm nhận hàng của Shopee ở vị trí dễ tiếp cận để tôi đặt giao hàng đến đó là điều quan trọng đối với tôi.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "96dfd717-545c-4bb0-b9f0-60f4fe1f4e64",
+        "text": "1"
+      },
+      {
+        "uuid": "3f802a62-5522-4844-a1d7-4f3ad0a6f36f",
+        "text": "2"
+      },
+      {
+        "uuid": "70f55c0d-78f3-4068-ab41-ea3a3292c31d",
+        "text": "3"
+      },
+      {
+        "uuid": "0ccd7059-8f39-478b-8417-1cb95ff34590",
+        "text": "4"
+      },
+      {
+        "uuid": "a28ceffa-b1ad-407e-8d2b-3d299dc7f325",
+        "text": "5"
+      },
+      {
+        "uuid": "47d60ff3-54c1-4968-8dd1-180287dc1b51",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "fe051a9d-635c-4a9b-813b-468edc5976d7",
+    "construct": "Location Convenience: Sự thuận tiện về vị trí",
+    "title": "24. Một vị trí thuận tiện làm tôi cảm thấy thoải mái hơn khi sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "e0df73b3-9160-4cea-9573-af333c9112f9",
+        "text": "1"
+      },
+      {
+        "uuid": "73d15663-8bdc-4c09-9f88-5fe2cd014390",
+        "text": "2"
+      },
+      {
+        "uuid": "cb052563-ebf4-47b6-8cd3-956a5b3b2ce0",
+        "text": "3"
+      },
+      {
+        "uuid": "ed4fd433-62f5-46b5-9dfd-7c6ce0cd9eab",
+        "text": "4"
+      },
+      {
+        "uuid": "e982172b-3f18-4a04-a8a1-a1c9b3e2869a",
+        "text": "5"
+      },
+      {
+        "uuid": "248cef54-dd68-4b9f-8f27-69391de0b207",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "e173ad7e-d394-4723-94c9-4b83c56f0d1a",
+    "construct": "Location Convenience: Sự thuận tiện về vị trí",
+    "title": "25. Khả năng tiếp cận vị trí một cách dễ dàng ảnh hưởng đến quyết định sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee của tôi.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "0be2e52e-a174-4e30-a15e-d93ed1755ed6",
+        "text": "1"
+      },
+      {
+        "uuid": "ddb1a501-a539-4ba0-bcc4-7188f5796035",
+        "text": "2"
+      },
+      {
+        "uuid": "6dcfda05-c5af-4c5f-8f1e-1872b6d49e7c",
+        "text": "3"
+      },
+      {
+        "uuid": "0453bd90-1b48-43cb-8a01-66c88abcaa01",
+        "text": "4"
+      },
+      {
+        "uuid": "2fc953ba-620a-4a66-96d8-e5a08ee27c49",
+        "text": "5"
+      },
+      {
+        "uuid": "9aa0a5f1-b88b-4f0d-a5ce-d8fda2ef2855",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "7f2fc058-65d7-4f1f-b066-5da260faf5ba",
+    "construct": "Attitude: Thái độ đối với dịch vụ",
+    "title": "26. Tôi tin rằng việc sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee để lấy kiện hàng của mình là một ý tưởng hay.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "8f8afe3f-46b2-4c42-8523-b5c1546673c3",
+        "text": "1"
+      },
+      {
+        "uuid": "d28f43cf-a1f9-4a65-95d0-4bb4f2f41b85",
+        "text": "2"
+      },
+      {
+        "uuid": "77d55a81-e9c4-43d1-bf68-276279ed4f7e",
+        "text": "3"
+      },
+      {
+        "uuid": "cefb8cc9-23cc-4fcc-ba40-f4acf97c3b24",
+        "text": "4"
+      },
+      {
+        "uuid": "d3282c8f-a726-4507-8a84-7ef106adaebf",
+        "text": "5"
+      },
+      {
+        "uuid": "ed0c070b-f7d0-4b54-9e87-887dbd26f724",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "99433649-dd72-47f1-931e-80e0d43784c4",
+    "construct": "Attitude: Thái độ đối với dịch vụ",
+    "title": "27. Tôi tin rằng việc sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee để lấy kiện hàng sẽ là một trải nghiệm dễ chịu.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "85ccf850-ab76-4516-8512-2f0be854caf7",
+        "text": "1"
+      },
+      {
+        "uuid": "3f3f301d-700a-46a7-a8f7-a51e3a1838b9",
+        "text": "2"
+      },
+      {
+        "uuid": "e2d2dc42-bfaa-416f-ab7f-c87d2ae99d18",
+        "text": "3"
+      },
+      {
+        "uuid": "c59af82f-2ae8-43b8-846a-f3f72e82c5bf",
+        "text": "4"
+      },
+      {
+        "uuid": "dacb32a3-0bd2-4d6d-ba88-f338109b9cc9",
+        "text": "5"
+      },
+      {
+        "uuid": "6849343e-3475-4dc8-a88f-9c693f7d6d36",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "59d85250-7ba5-420d-bd58-015e5151b62e",
+    "construct": "Attitude: Thái độ đối với dịch vụ",
+    "title": "28. Nhìn chung, tôi có nhận thức và đánh giá tích cực về việc sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "63daea08-9c26-41bd-9b00-cf256ac4dfed",
+        "text": "1"
+      },
+      {
+        "uuid": "644d38d3-ed39-41c4-90a6-81809919e7bd",
+        "text": "2"
+      },
+      {
+        "uuid": "e864a05f-7394-479d-ac5d-c309ab930e5f",
+        "text": "3"
+      },
+      {
+        "uuid": "16d66fab-d317-4a98-a6e7-ac76f5a9e775",
+        "text": "4"
+      },
+      {
+        "uuid": "de38b560-f4ae-47a3-9bd9-2c794f570f19",
+        "text": "5"
+      },
+      {
+        "uuid": "f479d8d5-40b2-41ff-9a05-3a6faa1d65b1",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "c3514cd4-1aaa-48c6-9d1b-7e67aa0c231c",
+    "construct": "Subjective Norm: Chuẩn chủ quan",
+    "title": "29. Tôi có khả năng sẽ sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee do sự kỳ vọng từ những người có ảnh hưởng đến quyết định của tôi.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "7f3c1ed5-f777-4a6d-b535-12bc4bd6c6c8",
+        "text": "1"
+      },
+      {
+        "uuid": "23f535e5-4f4f-4615-ba8c-92a09300eb15",
+        "text": "2"
+      },
+      {
+        "uuid": "1cbfbcab-19b4-4524-a2f9-2d71304c558e",
+        "text": "3"
+      },
+      {
+        "uuid": "121adcd0-a633-48a0-a31a-371917df80cb",
+        "text": "4"
+      },
+      {
+        "uuid": "ec481b7c-cfcc-40a5-8646-746039be6b89",
+        "text": "5"
+      },
+      {
+        "uuid": "4cc173ab-86d9-4236-a413-8c7da63285e1",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "614283e8-b003-4a5a-8f65-89afc193aa4a",
+    "construct": "Subjective Norm: Chuẩn chủ quan",
+    "title": "30. Những người có ảnh hưởng đến quan điểm của tôi sẽ khuyến khích tôi sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee để lấy kiện hàng.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "92544bf5-913c-4fba-9266-e836c7de5a9d",
+        "text": "1"
+      },
+      {
+        "uuid": "5fd7f48f-406d-4d8b-b347-8424ba637330",
+        "text": "2"
+      },
+      {
+        "uuid": "d653ec50-f60b-4a3c-ab3c-568f402fe72a",
+        "text": "3"
+      },
+      {
+        "uuid": "8322c7d2-3bc8-47a0-848e-6e24ebd68e2c",
+        "text": "4"
+      },
+      {
+        "uuid": "99db1e2b-b542-4573-b295-d6321209e4fa",
+        "text": "5"
+      },
+      {
+        "uuid": "2296bc08-558a-4619-a7ae-740c9588a55e",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "0386e6ed-51b7-401e-b655-498f7443e7bc",
+    "construct": "Subjective Norm: Chuẩn chủ quan",
+    "title": "31. Những người quan trọng đối với tôi sẽ ủng hộ tôi sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) cho các đơn hàng mua sắm trên Shopee.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "ae4e6281-7e0a-4c7c-9b11-a73500566cbe",
+        "text": "1"
+      },
+      {
+        "uuid": "b4a95e39-5e85-4523-9037-45f79cb9e6cc",
+        "text": "2"
+      },
+      {
+        "uuid": "8b67dce3-599f-444e-b309-9512071cc111",
+        "text": "3"
+      },
+      {
+        "uuid": "5a2ca8ab-dda4-4390-864e-f1857923928f",
+        "text": "4"
+      },
+      {
+        "uuid": "357a7e29-498a-4da8-91b5-3f66f5c29147",
+        "text": "5"
+      },
+      {
+        "uuid": "d474f50b-f4a6-410c-86df-24269e8372f9",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "42c37601-e9b4-4e22-9c25-9efc492e154c",
+    "construct": "Perceived Behavioral Control: Nhận thức kiểm soát hành vi",
+    "title": "32. Tôi tin rằng việc tự mình sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee hoàn toàn nằm trong tầm kiểm soát của tôi.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "0e8d01aa-d2d9-493c-aac3-f059b6422287",
+        "text": "1"
+      },
+      {
+        "uuid": "32e6c448-1835-40fe-8b22-0cb6f067fa7b",
+        "text": "2"
+      },
+      {
+        "uuid": "883182c1-8167-4f13-a736-3b2386fb4e1e",
+        "text": "3"
+      },
+      {
+        "uuid": "67b5981e-d229-482e-a511-bcd3cddb94a6",
+        "text": "4"
+      },
+      {
+        "uuid": "73b1aa61-f039-4e36-84cc-a6924e79e84a",
+        "text": "5"
+      },
+      {
+        "uuid": "6aaacd0a-e918-413a-be96-5473309aa252",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "1109adbf-578b-42cd-9df1-046f1f882308",
+    "construct": "Perceived Behavioral Control: Nhận thức kiểm soát hành vi",
+    "title": "33. Tôi cảm thấy tự tin vào khả năng chủ động sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee để nhận các kiện hàng của mình.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "531edd9a-e193-458e-87e5-890b7a56b8e8",
+        "text": "1"
+      },
+      {
+        "uuid": "58387dc0-940f-4f0e-ac6a-8b20294d38fe",
+        "text": "2"
+      },
+      {
+        "uuid": "b1e10fc1-28a3-42ee-8726-d4e24b89fac9",
+        "text": "3"
+      },
+      {
+        "uuid": "44edfab7-0edb-40dd-b91f-006ef96aea06",
+        "text": "4"
+      },
+      {
+        "uuid": "deae6944-3081-4e4b-8ee1-5cf465dc8d09",
+        "text": "5"
+      },
+      {
+        "uuid": "5a12d938-461f-4a3c-ae30-7c5f2c99d612",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "f015b004-37a2-4708-b00e-def314b5d534",
+    "construct": "Perceived Behavioral Control: Nhận thức kiểm soát hành vi",
+    "title": "34. Tôi nghĩ rằng mình có đủ các kỹ năng cần thiết để sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "362786d4-b24e-45c1-8175-d4f2f2201c59",
+        "text": "1"
+      },
+      {
+        "uuid": "28f4f74f-ebf5-4f0d-96d9-70614b1ba6d6",
+        "text": "2"
+      },
+      {
+        "uuid": "16dc013e-74a0-4808-8a4a-7ba19bb1d122",
+        "text": "3"
+      },
+      {
+        "uuid": "49c7f4eb-e571-4f19-9598-d9384d920190",
+        "text": "4"
+      },
+      {
+        "uuid": "e73892e5-a562-4048-87ed-544381de2c1c",
+        "text": "5"
+      },
+      {
+        "uuid": "78c589bb-5814-4546-8a6a-6ca903e29dbe",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "27baa411-a12d-49ba-b1d6-bf1d909b8b6c",
+    "construct": "Perceived Behavioral Control: Nhận thức kiểm soát hành vi",
+    "title": "35. Tôi tin rằng mình có đủ kiến thức và sự hiểu biết cần thiết để sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "cffc15c6-3164-44ac-b23c-9bf29d4ad7d0",
+        "text": "1"
+      },
+      {
+        "uuid": "12b9b774-de54-486b-9ac5-9467710f6ae5",
+        "text": "2"
+      },
+      {
+        "uuid": "6e4227e5-2e98-44df-adac-75b5933a2bc0",
+        "text": "3"
+      },
+      {
+        "uuid": "b4d5d19a-97ca-4c9a-bca7-f74771b1e5ba",
+        "text": "4"
+      },
+      {
+        "uuid": "72cdb7b1-62cd-400b-bb77-dbeeac36c5eb",
+        "text": "5"
+      },
+      {
+        "uuid": "5cc2c158-7c9b-487e-9d63-d63e3bec84cb",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "8dd1c937-6ba6-4df1-b3d9-44ca3f245bd0",
+    "construct": "Intention to Use: Ý định sử dụng dịch vụ",
+    "title": "36. Tôi có ý định sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee để nhận kiện hàng cho lần mua sắm trực tuyến tiếp theo của mình.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "96820c2a-e26d-4a4a-ac8d-a2c9f9594c0a",
+        "text": "1"
+      },
+      {
+        "uuid": "076158b6-6554-4ec7-9145-c1dc50afb701",
+        "text": "2"
+      },
+      {
+        "uuid": "3574375a-5175-4a46-a2c3-9c5923e73c98",
+        "text": "3"
+      },
+      {
+        "uuid": "4b54cbee-a8d8-4de2-aa42-40c0e4998ea7",
+        "text": "4"
+      },
+      {
+        "uuid": "c6342b81-519e-4bad-b76b-89d343e09c1a",
+        "text": "5"
+      },
+      {
+        "uuid": "7e9ed87d-9591-4e50-a912-d26e419cc6d6",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "a634f8a0-b28e-494b-9e73-97b4b4ae4899",
+    "construct": "Intention to Use: Ý định sử dụng dịch vụ",
+    "title": "37. Tôi sẽ ưu tiên sử dụng dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee cho các đơn hàng của mình bất cứ khi nào tùy chọn này khả dụng.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "6b5ff7db-5db1-4bbf-bb9e-de349a5898e6",
+        "text": "1"
+      },
+      {
+        "uuid": "f2541bfd-5911-486b-8f79-36f70db9c66e",
+        "text": "2"
+      },
+      {
+        "uuid": "6cd68da1-df2d-42fc-90a4-77216891a236",
+        "text": "3"
+      },
+      {
+        "uuid": "799be4a6-96d3-41a1-9704-52137c93aa1d",
+        "text": "4"
+      },
+      {
+        "uuid": "a315a57a-547d-4b99-91b8-4456d9ca94be",
+        "text": "5"
+      },
+      {
+        "uuid": "5224ebaa-6573-4230-b532-0f3b2cfaca82",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "cbc3fa28-5e9d-4fa8-8279-95781a171b0b",
+    "construct": "Intention to Use: Ý định sử dụng dịch vụ",
+    "title": "38. Tôi sẽ giới thiệu dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee cho bạn bè của mình.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "89c0bcf6-0b9f-423e-b56b-f5be75367455",
+        "text": "1"
+      },
+      {
+        "uuid": "2da021b3-2f92-4851-8a09-0cab47834e53",
+        "text": "2"
+      },
+      {
+        "uuid": "09b7e508-0b10-4211-891c-c2b2e6fe4e1f",
+        "text": "3"
+      },
+      {
+        "uuid": "15a8c30a-73b3-4616-ac55-107b90714049",
+        "text": "4"
+      },
+      {
+        "uuid": "da9d39df-25f1-4ced-94b9-5df242d7c891",
+        "text": "5"
+      },
+      {
+        "uuid": "c596ffd2-8fff-49cb-83cf-72a35bab77f4",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "groupUuid": "1fbabca2-6d5b-4a63-a61d-4d97812919e1",
+    "construct": "Intention to Use: Ý định sử dụng dịch vụ",
+    "title": "39. Tôi sẽ nói những điều tích cực về dịch vụ lấy hàng chủ động (Tủ nhận hàng hoặc Điểm nhận hàng) trên Shopee với bạn bè của mình.",
+    "type": "MULTIPLE_CHOICE",
+    "options": [
+      {
+        "uuid": "5c0b7858-14c0-4aff-85da-d6eee8de3022",
+        "text": "1"
+      },
+      {
+        "uuid": "6d33a7eb-38d8-4dc9-9482-c11c1c827a17",
+        "text": "2"
+      },
+      {
+        "uuid": "8f97da67-979b-4371-82c8-6e47c65d8a1c",
+        "text": "3"
+      },
+      {
+        "uuid": "9896602f-1b8b-45ab-bc29-8d57a7c9c157",
+        "text": "4"
+      },
+      {
+        "uuid": "741d42de-9d9d-4f50-b306-68ba8f28067a",
+        "text": "5"
+      },
+      {
+        "uuid": "5018a90e-d605-42c0-b01a-87c151ece40d",
+        "text": "6"
+      }
+    ]
+  }
+]

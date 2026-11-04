@@ -1,0 +1,51 @@
+{
+  "saved_at": "2026-11-04 10:37:04",
+  "version": "1.0",
+  "campaign": {
+    "form_url": "https://tally.so/r/J118j4",
+    "target_count": 150,
+    "num_workers": 2,
+    "master_seed": 42
+  },
+  "pacing": {
+    "dist_choice": "Truncated Gaussian (Người thật)",
+    "delay_min": 1800.0,
+    "delay_max": 3600.0,
+    "enable_micro": true,
+    "break_freq_min": 15,
+    "break_freq_max": 25,
+    "break_dur_min": 10.0,
+    "break_dur_max": 30.0
+  },
+  "scheduler": {
+    "enable_sched": false,
+    "start_delay_sec": 0,
+    "active_windows_str": "08:00-12:00, 13:30-17:30",
+    "batch_limit_val": 50,
+    "cooldown_sec": 300.0
+  },
+  "demographics": {
+    "age_mean": 21.5,
+    "age_std": 2.0,
+    "female_pct": 53,
+    "hcm_pct": 50,
+    "hanoi_pct": 40,
+    "danang_pct": 10
+  },
+  "psychometrics": {
+    "alpha_threshold": 0.82,
+    "construct_means": {
+      "PU": 4.65,
+      "PEOU": 4.7,
+      "PES": 4.75,
+      "PC": 2.35,
+      "PI": 4.25,
+      "SE": 4.75,
+      "LC": 4.7,
+      "ATT": 4.65,
+      "SN": 4.3,
+      "PBC": 4.7,
+      "ITU": 4.65
+    }
+  }
+}

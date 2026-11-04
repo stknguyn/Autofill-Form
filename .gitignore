@@ -1,0 +1,48 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# C extensions
+*.obj
+*.o
+*.pyd
+
+# Pytest / Test runners
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Agent teamwork & internal scratch artifacts
+.agents/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Temp / Raw Crawled data dumps
+tally_raw.html
+tally_next_data.json
+tally_parsed_survey.txt
+tally_id_chunk.js
+tally_clean_mapping.json
+tally_blocks_summary.json
+
+# Local runtime session config (bỏ comment nếu bạn không muốn track cấu hình cá nhân)
+# session_config.json
