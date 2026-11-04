@@ -84,13 +84,17 @@ st.set_page_config(
 # Swiss Slate 900 Theme & Data-Dense CSS Injection (ui-ux-pro-max)
 # ---------------------------------------------------------------------------
 SWISS_SLATE_CSS = """<style>
+/* ---------------- Google Fonts (Inter & JetBrains Mono) ---------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 /* ---------------- Root Palette & Reset ---------------- */
 :root {
-  --bg-main: #0f172a;
-  --bg-card: #1e293b;
-  --bg-card-hover: #243047;
-  --border-card: #334155;
-  --border-focus: #475569;
+  --bg-main: #0b1120;
+  --bg-sidebar: #070d19;
+  --bg-card: #131d31;
+  --bg-card-hover: #1e293b;
+  --border-card: #1e293b;
+  --border-focus: #38bdf8;
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
@@ -106,6 +110,7 @@ SWISS_SLATE_CSS = """<style>
 .stApp {
   background-color: var(--bg-main) !important;
   color: var(--text-primary) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 }
 
 div[data-testid="stAppViewContainer"] {
@@ -118,28 +123,50 @@ header[data-testid="stHeader"] {
 
 .main .block-container {
   padding-top: 1.0rem !important;
-  padding-bottom: 2rem !important;
+  padding-bottom: 2.5rem !important;
   max-width: 98% !important;
   background-color: var(--bg-main) !important;
   color: var(--text-primary) !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }
 
 /* ---------------- Sidebar Styling ---------------- */
 section[data-testid="stSidebar"] {
-  background-color: #0b1120 !important;
+  background-color: var(--bg-sidebar) !important;
   border-right: 1px solid #1e293b !important;
 }
 
 div[data-testid="stSidebarContent"] {
-  background-color: #0b1120 !important;
+  background-color: var(--bg-sidebar) !important;
 }
 
 div[data-testid="stSidebar"] [data-testid="stExpander"] {
-  background-color: #1e293b !important;
-  border: 1px solid #334155 !important;
-  border-radius: 6px !important;
-  margin-bottom: 8px;
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-card) !important;
+  border-radius: 8px !important;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
+  transition: all 0.2s ease-in-out;
+}
+
+div[data-testid="stSidebar"] [data-testid="stExpander"]:hover {
+  border-color: #334155 !important;
 }
 
 div[data-testid="stSidebar"] [data-testid="stExpander"] details {
@@ -148,7 +175,7 @@ div[data-testid="stSidebar"] [data-testid="stExpander"] details {
 
 div[data-testid="stSidebar"] [data-testid="stExpander"] summary {
   color: #f1f5f9 !important;
-  font-size: 0.82rem !important;
+  font-size: 0.84rem !important;
   font-weight: 600 !important;
 }
 
@@ -162,11 +189,13 @@ div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:has(> div:nth-
   color: #ffffff !important;
   border: 1px solid #059669 !important;
   font-weight: 600 !important;
-  transition: all 0.15s ease-in-out;
+  border-radius: 6px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:has(> div:nth-child(4)) > div:nth-child(1) button:hover:not(:disabled) {
   background: linear-gradient(135deg, #047857 0%, #059669 100%) !important;
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4) !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.45) !important;
+  transform: translateY(-1px);
 }
 
 div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:has(> div:nth-child(4)) > div:nth-child(2) button {
@@ -174,10 +203,14 @@ div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:has(> div:nth-
   color: #fbbf24 !important;
   border: 1px solid rgba(245, 158, 11, 0.4) !important;
   font-weight: 600 !important;
+  border-radius: 6px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:has(> div:nth-child(4)) > div:nth-child(2) button:hover:not(:disabled) {
   background: rgba(245, 158, 11, 0.25) !important;
   border-color: #f59e0b !important;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25) !important;
+  transform: translateY(-1px);
 }
 
 div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:has(> div:nth-child(4)) > div:nth-child(3) button {
@@ -185,10 +218,14 @@ div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:has(> div:nth-
   color: #f87171 !important;
   border: 1px solid rgba(239, 68, 68, 0.4) !important;
   font-weight: 600 !important;
+  border-radius: 6px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:has(> div:nth-child(4)) > div:nth-child(3) button:hover:not(:disabled) {
   background: rgba(239, 68, 68, 0.25) !important;
   border-color: #ef4444 !important;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25) !important;
+  transform: translateY(-1px);
 }
 
 div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:has(> div:nth-child(4)) > div:nth-child(4) button {
@@ -196,10 +233,13 @@ div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:has(> div:nth-
   color: #cbd5e1 !important;
   border: 1px solid rgba(148, 163, 184, 0.3) !important;
   font-weight: 600 !important;
+  border-radius: 6px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:has(> div:nth-child(4)) > div:nth-child(4) button:hover:not(:disabled) {
   background: rgba(148, 163, 184, 0.22) !important;
   border-color: #94a3b8 !important;
+  transform: translateY(-1px);
 }
 
 /* Sidebar session config buttons styling (Load & Save) */
@@ -209,12 +249,13 @@ div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:not(:has(> div
   border: 1px solid rgba(56, 189, 248, 0.35) !important;
   font-weight: 600 !important;
   font-size: 0.80rem !important;
-  transition: all 0.15s ease-in-out;
+  border-radius: 6px !important;
+  transition: all 0.2s ease-in-out;
 }
 div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:not(:has(> div:nth-child(3))) > div:nth-child(1) button:hover:not(:disabled) {
   background: rgba(56, 189, 248, 0.22) !important;
   border-color: #38bdf8 !important;
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3) !important;
+  box-shadow: 0 2px 10px rgba(56, 189, 248, 0.3) !important;
 }
 
 div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:not(:has(> div:nth-child(3))) > div:nth-child(2) button {
@@ -223,42 +264,44 @@ div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:not(:has(> div
   border: 1px solid rgba(16, 185, 129, 0.35) !important;
   font-weight: 600 !important;
   font-size: 0.80rem !important;
-  transition: all 0.15s ease-in-out;
+  border-radius: 6px !important;
+  transition: all 0.2s ease-in-out;
 }
 div[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"]:not(:has(> div:nth-child(3))) > div:nth-child(2) button:hover:not(:disabled) {
   background: rgba(16, 185, 129, 0.22) !important;
   border-color: #10b981 !important;
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3) !important;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3) !important;
 }
 
 div[data-testid="stSidebar"] button:disabled {
-  opacity: 0.45 !important;
+  opacity: 0.40 !important;
   cursor: not-allowed !important;
-  background: #1e293b !important;
+  background: #131d31 !important;
   color: #64748b !important;
-  border-color: #334155 !important;
+  border-color: #1e293b !important;
 }
 
 /* ---------------- Tabs Styling ---------------- */
 .stTabs [data-baseweb="tab-list"] {
-  gap: 6px;
+  gap: 8px;
   background-color: transparent !important;
-  border-bottom: 1px solid #334155 !important;
-  padding-bottom: 2px;
+  border-bottom: 1px solid #1e293b !important;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
 }
 .stTabs [data-baseweb="tab"] {
   background-color: transparent !important;
   border: none !important;
-  border-radius: 4px 4px 0 0 !important;
+  border-radius: 6px 6px 0 0 !important;
   color: #94a3b8 !important;
   font-size: 0.88rem !important;
   font-weight: 600 !important;
   padding: 8px 16px !important;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 .stTabs [data-baseweb="tab"]:hover {
   color: #f8fafc !important;
-  background-color: rgba(51, 65, 85, 0.4) !important;
+  background-color: rgba(30, 41, 59, 0.4) !important;
 }
 .stTabs [aria-selected="true"] {
   color: #38bdf8 !important;
@@ -268,17 +311,19 @@ div[data-testid="stSidebar"] button:disabled {
 
 /* ---------------- Download Buttons in Tab 3 ---------------- */
 .stDownloadButton button {
-  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%) !important;
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
   color: #ffffff !important;
   border: 1px solid #3b82f6 !important;
   font-weight: 600 !important;
-  padding: 10px 16px !important;
-  border-radius: 6px !important;
-  transition: all 0.2s ease-in-out;
+  padding: 10px 18px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .stDownloadButton button:hover {
-  background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%) !important;
-  box-shadow: 0 0 12px rgba(59, 130, 246, 0.4) !important;
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%) !important;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.45) !important;
+  transform: translateY(-1px);
 }
 
 /* ---------------- Top-level KPI Metric Cards ---------------- */
@@ -286,7 +331,7 @@ div[data-testid="stSidebar"] button:disabled {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 @media (max-width: 1200px) {
   .kpi-row { grid-template-columns: repeat(3, 1fr); }
@@ -299,19 +344,19 @@ div[data-testid="stSidebar"] button:disabled {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-top: 2px solid #3b82f6;
-  border-radius: 8px;
-  padding: 12px 16px;
+  border-radius: 10px;
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 104px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  transition: all 0.2s ease;
+  min-height: 108px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .kpi-card:hover {
-  border-color: #475569;
+  border-color: #334155;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.38);
 }
 .kpi-top {
   display: flex;
@@ -327,12 +372,13 @@ div[data-testid="stSidebar"] button:disabled {
   color: var(--text-muted);
 }
 .kpi-value {
+  font-family: 'JetBrains Mono', 'Segoe UI', monospace;
   font-size: 1.65rem;
   font-weight: 700;
   color: #ffffff;
   line-height: 1.15;
   font-variant-numeric: tabular-nums;
-  margin: 3px 0;
+  margin: 4px 0;
 }
 .kpi-subtext {
   font-size: 0.74rem;
@@ -346,13 +392,14 @@ div[data-testid="stSidebar"] button:disabled {
 .status-pill {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 2px 8px;
+  gap: 5px;
+  padding: 2.5px 8px;
   border-radius: 9999px;
   font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 .pill-emerald { background: rgba(34, 197, 94, 0.16); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); }
 .pill-blue    { background: rgba(59, 130, 246, 0.16); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
@@ -366,8 +413,9 @@ div[data-testid="stSidebar"] button:disabled {
 .lat-pill {
   display: inline-flex;
   align-items: center;
-  padding: 1px 6px;
+  padding: 1.5px 6px;
   border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.68rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
@@ -389,13 +437,13 @@ div[data-testid="stSidebar"] button:disabled {
   border: 1px solid var(--border-card);
   border-radius: 8px;
   padding: 12px 14px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .worker-card:hover {
-  border-color: var(--border-focus);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-color: #334155;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 .worker-header {
   display: flex;
@@ -404,6 +452,7 @@ div[data-testid="stSidebar"] button:disabled {
   margin-bottom: 8px;
 }
 .worker-name {
+  font-family: 'JetBrains Mono', 'Segoe UI', monospace;
   font-weight: 700;
   font-size: 0.88rem;
   color: #ffffff;
@@ -436,26 +485,26 @@ div[data-testid="stSidebar"] button:disabled {
 
 /* ---------------- Banner Boxes ---------------- */
 .dryrun-amber-box {
-  background: rgba(245, 158, 11, 0.12);
+  background: rgba(245, 158, 11, 0.10);
   border: 1px solid rgba(245, 158, 11, 0.35);
   border-left: 4px solid var(--accent-amber);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 10px 14px;
   margin-bottom: 12px;
   font-size: 0.80rem;
   color: #fef08a;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 .live-red-box {
-  background: rgba(239, 68, 68, 0.12);
+  background: rgba(239, 68, 68, 0.10);
   border: 1px solid rgba(239, 68, 68, 0.35);
   border-left: 4px solid var(--accent-red);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 10px 14px;
   margin-bottom: 12px;
   font-size: 0.80rem;
   color: #fca5a5;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 </style>"""
 st.markdown(SWISS_SLATE_CSS, unsafe_allow_html=True)
