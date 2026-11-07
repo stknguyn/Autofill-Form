@@ -77,7 +77,7 @@ class TestSPSSNumericCSV(unittest.TestCase):
             "ATT1", "ATT2", "ATT3",
             "SN1", "SN2", "SN3",
             "PBC1", "PBC2", "PBC3", "PBC4",
-            "ITU1", "ITU2", "ITU3", "ITU4",
+            "ITU1", "ITU2", "ITU3",
         ]
         for it in expected_indicators:
             self.assertIn(it, df.columns, f"Indicator '{it}' missing from exported matrix")

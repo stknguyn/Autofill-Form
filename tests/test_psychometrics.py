@@ -52,7 +52,7 @@ class TestPsychometricsReliability(unittest.TestCase):
         )
 
     def test_overall_model_alpha(self):
-        """Verify full 39-item scale (with PC inverted) has alpha >= 0.90."""
+        """Verify full 38-item scale (with PC inverted) has alpha >= 0.90."""
         alphas = self.analyzer.get_cronbach_alpha()
         overall = alphas.get("overall", 0.0)
         self.assertGreaterEqual(
@@ -63,8 +63,8 @@ class TestPsychometricsReliability(unittest.TestCase):
 
     def test_pc_reversal_necessity(self):
         """Demonstrate that NOT reversing PC results in degraded overall scale alpha."""
-        raw_matrix = np.zeros((self.num_samples, 39), dtype=np.float64)
-        rev_matrix = np.zeros((self.num_samples, 39), dtype=np.float64)
+        raw_matrix = np.zeros((self.num_samples, 38), dtype=np.float64)
+        rev_matrix = np.zeros((self.num_samples, 38), dtype=np.float64)
 
         for i, p in enumerate(self.profiles):
             for code, idx in self.analyzer._code_to_idx.items():
@@ -107,7 +107,7 @@ class TestPsychometricsReliability(unittest.TestCase):
 
     def test_streaming_vs_batch_parity(self):
         """Verify Welford streaming tracker produces exact same results as batch np.cov."""
-        matrix = np.zeros((self.num_samples, 39), dtype=np.float64)
+        matrix = np.zeros((self.num_samples, 38), dtype=np.float64)
         for i, p in enumerate(self.profiles):
             for code, idx in self.analyzer._code_to_idx.items():
                 val = float(p.likert_scores[code])
@@ -115,7 +115,7 @@ class TestPsychometricsReliability(unittest.TestCase):
 
         # Batch covariance and alpha
         batch_cov = np.cov(matrix, rowvar=False, ddof=1)
-        k = 39
+        k = 38
         batch_alpha = float((k / (k - 1)) * (1.0 - np.trace(batch_cov) / np.sum(batch_cov)))
 
         # Streaming from analyzer
@@ -129,7 +129,7 @@ class TestPsychometricsReliability(unittest.TestCase):
         self.assertLess(alpha_diff, 1e-12, f"Alpha divergence: {alpha_diff}")
 
     def test_corrected_item_total_correlation(self):
-        """Verify all 39 Likert items have Corrected Item-Total Correlation >= 0.30."""
+        """Verify all 38 Likert items have Corrected Item-Total Correlation >= 0.30."""
         summary = self.analyzer.get_summary()
         failing_items: Dict[str, float] = {}
         for c_code, c_stat in summary.construct_stats.items():

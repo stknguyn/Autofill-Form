@@ -1,7 +1,7 @@
 """
-tally_schema.py - Authoritative Tally Form J118j4 Schema & API Contract
-Encapsulates 52 questions, 293 option UUIDs, screening logic, payload serialization,
-and validation rules for api.tally.so/forms/J118j4/respond.
+tally_schema.py - Authoritative Tally Form laqVzV Schema & API Contract
+Encapsulates 51 questions, 287 option UUIDs, screening logic, payload serialization,
+and validation rules for api.tally.so/forms/laqVzV/respond.
 """
 
 from __future__ import annotations
@@ -28,28 +28,28 @@ logger = logging.getLogger("TallySchema")
 # ---------------------------------------------------------------------------
 # Constants & Enums
 # ---------------------------------------------------------------------------
-FORM_ID = "J118j4"
+FORM_ID = "laqVzV"
 FORM_URL = f"https://tally.so/r/{FORM_ID}"
 SUBMIT_URL = f"https://api.tally.so/forms/{FORM_ID}/respond"
 
-# Critical Screening UUIDs
-CONSENT_QUESTION_UUID = "3e5a203f-e81c-45f4-88c8-70aa4cc36696"
-CONSENT_AGREE_UUID = "1b84910e-a410-455c-8595-f4f73c7ea7ff"
-CONSENT_DISAGREE_UUID = "18b5cbd6-040e-4ef8-b213-7fc038f1e6df"
+# Critical Screening UUIDs (from consolidated_schema.json)
+CONSENT_QUESTION_UUID = "421b7f82-73ab-4c8b-991b-36631dd828f5"
+CONSENT_AGREE_UUID = "8dc2c356-928c-45f7-9eb0-7c23595e6a32"
+CONSENT_DISAGREE_UUID = "f13046af-a30b-43f1-b194-619a82673c98"
 
-USAGE_QUESTION_UUID = "c2a8c967-6d50-4b90-981e-2b4acbb5af01"
-USAGE_NEVER_UUID = "42a1fc17-7d7a-4cc4-9eeb-3df094a64b86"  # DISQUALIFICATION TRAP
+USAGE_QUESTION_UUID = "58b651ba-368a-4378-830f-6e757b34aced"
+USAGE_NEVER_UUID = "a823801f-c57b-4589-986b-5c0638b62330"  # DISQUALIFICATION TRAP
 USAGE_QUALIFIED_UUIDS = [
-    "9232238d-d74e-4520-85c4-f87c8b827c1c",  # Today / yesterday
-    "15c0ab5e-e45d-4a8b-8234-3a6eb117898b",  # Within 1 week
-    "0ed4d205-154f-4333-94ea-3c1cd02812bf",  # 2 weeks to 1 month
-    "cd8db0c7-34c8-4a41-a608-a7206f6ec8a9",  # 1 to 6 months
-    "ec6f15d1-7feb-49ef-aa4a-58b6c6a22d56",  # > 6 months
+    "fd803980-e9d9-48db-b8c8-a67481648950",  # Today / yesterday
+    "1f5b611b-db7b-4084-9e4b-055f54eacbae",  # Within 1 week
+    "8312b408-472f-4155-9d54-c0eb187a859a",  # 2 weeks to 1 month
+    "869c0446-e4fa-49d9-8431-afb649aa64bd",  # 1 to 6 months
+    "16612a82-802a-4e72-9c28-50f9647b9666",  # > 6 months
 ]
-DEFAULT_QUALIFIED_USAGE_UUID = "15c0ab5e-e45d-4a8b-8234-3a6eb117898b"
+DEFAULT_QUALIFIED_USAGE_UUID = "1f5b611b-db7b-4084-9e4b-055f54eacbae"
 
-REASON_NEVER_QUESTION_UUID = "e2948fdb-2d9a-413c-8a8b-96ff61314f0c"
-AGE_QUESTION_UUID = "d8ec1647-4508-481b-b8ea-302737d9a5e9"
+REASON_NEVER_QUESTION_UUID = "7dbc0210-2d97-42d5-ab13-e09d16fc7d99"
+AGE_QUESTION_UUID = "92570a0c-41e3-4adf-8bf7-93fc01b0a66b"
 
 UUID_V4_PATTERN = re.compile(
     r"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
@@ -203,7 +203,7 @@ class TallySchema:
 
     @classmethod
     def initialize(cls, schema_path: Optional[Union[str, Path]] = None) -> None:
-        """Loads and binds the canonical 52 questions and 293 options."""
+        """Loads and binds the canonical 51 questions and 287 options."""
         if cls.QUESTIONS:
             return  # Already initialized
 

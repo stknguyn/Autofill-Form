@@ -237,7 +237,7 @@ class TestTier4Scenario1AcademicSurveySimulation(unittest.TestCase):
 
             # Parse exported CSV into pandas
             df_csv = pd.read_csv(io.BytesIO(csv_bytes), encoding="utf-8-sig")
-            self.assertEqual(df_csv.shape, (target_count, 73), f"Expected (300, 73) shape in CSV, got {df_csv.shape}")
+            self.assertEqual(df_csv.shape, (target_count, 72), f"Expected (300, 72) shape in CSV, got {df_csv.shape}")
 
             # Check demographic integer encodings
             self.assertTrue(df_csv["Gender"].isin([1, 2, 3]).all(), "Invalid Gender encoding in CSV")
@@ -254,9 +254,9 @@ class TestTier4Scenario1AcademicSurveySimulation(unittest.TestCase):
                 self.assertIn(col, df_csv.columns)
                 self.assertTrue(df_csv[col].isin([0, 1]).all(), f"Dummy column {col} contains non-binary values")
 
-            # Check 39 Likert items are strictly integers in [1, 6]
+            # Check 38 Likert items are strictly integers in [1, 6]
             likert_cols = [c for c in df_csv.columns if any(c.startswith(prefix) for prefix in expected_constructs) and not c.endswith("_rev")]
-            self.assertEqual(len(likert_cols), 39, f"Expected 39 Likert columns, found {len(likert_cols)}")
+            self.assertEqual(len(likert_cols), 38, f"Expected 38 Likert columns, found {len(likert_cols)}")
             for col in likert_cols:
                 self.assertTrue(df_csv[col].between(1, 6).all(), f"Likert column {col} has out-of-bounds values")
 
@@ -287,9 +287,9 @@ class TestTier4Scenario1AcademicSurveySimulation(unittest.TestCase):
                 f"Unexpected Excel sheet names: {sheet_names}",
             )
 
-            # Verify Codebook completeness (73 variables)
+            # Verify Codebook completeness (72 variables)
             df_codebook = ExportService.get_variable_codebook()
-            self.assertEqual(len(df_codebook), 73, f"Expected 73 variable definitions in Codebook, got {len(df_codebook)}")
+            self.assertEqual(len(df_codebook), 72, f"Expected 72 variable definitions in Codebook, got {len(df_codebook)}")
             self.assertIn("Variable Name", df_codebook.columns)
             self.assertIn("Variable Label", df_codebook.columns)
             self.assertIn("Measurement Level", df_codebook.columns)

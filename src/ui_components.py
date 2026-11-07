@@ -551,6 +551,11 @@ def create_gender_donut_chart(
 
     # UUID, integer, and label mapping dictionary
     gender_map = {
+        # Form laqVzV
+        "81d03d10-18e3-4cdc-9fab-46813d36722f": "Nam",
+        "12989b94-19ce-4f75-bd5d-39f0b2f54159": "Nữ",
+        "94cb99a4-5c8f-4c99-8a40-bf05960e3947": "Khác",
+        # Legacy form J118j4
         "7a33c383-e672-4bdc-97e1-985ba902247d": "Nam",
         "428cad0c-6d8e-4f12-bbec-8c593b428fc4": "Nữ",
         "200936e3-785a-4d5b-8c00-226b5ca1735a": "Khác",
@@ -612,6 +617,12 @@ def create_location_chart(
         return create_empty_state_figure("Chưa có dữ liệu địa bàn", height=height)
 
     loc_map = {
+        # Form laqVzV
+        "2b2be2cd-9c9e-4e12-b4af-05cb909dc9b4": "TP. Hồ Chí Minh",
+        "11034d07-1c9f-499d-836d-f95c850fcf11": "Hà Nội",
+        "6be9da09-a0d5-4aee-a5d7-81224d579bf6": "Đà Nẵng",
+        "0d3be16b-0c5c-4048-adf0-b932b865f6d3": "Tỉnh khác",
+        # Legacy form J118j4
         "78ef19e6-8b27-4801-ae86-30118c8f333b": "TP. Hồ Chí Minh",
         "a1561c8f-20a1-4571-b447-a23943e98f0c": "Hà Nội",
         "4d4962c3-86f5-4d5b-bc59-536d23df2db5": "Đà Nẵng",
@@ -731,6 +742,14 @@ def create_employment_donut_chart(
         return create_empty_state_figure("Chưa có dữ liệu nghề nghiệp", height=height)
 
     emp_map = {
+        # Form laqVzV
+        "96d8be6e-6b29-4942-b452-8674ce1c43e8": "Bán thời gian",
+        "42ca8b29-bcfa-4e54-8b76-57d5b972cc38": "Toàn thời gian",
+        "f96fa88c-3292-46a8-8444-e5a05bb3e65c": "Freelancer",
+        "adc29abb-54d6-4344-89d9-b084760ae0f9": "Đang tìm việc",
+        "9e225384-7057-4bd2-8f9b-737d5839365e": "Học sinh / Sinh viên",
+        "3739968d-b0cb-4501-ba9e-eadccdff1ab5": "Khác",
+        # Legacy form J118j4
         "af1929cf-8d02-4c2a-b152-33facb89b2ae": "Bán thời gian",
         "226d694d-7ba6-4dfc-a600-ad508d32a2fd": "Toàn thời gian",
         "690cab48-5280-4e7c-91c8-bf2b8b751d35": "Freelancer",
@@ -797,6 +816,13 @@ def create_frequency_chart(
         return create_empty_state_figure("Chưa có dữ liệu tần suất Shopee", height=height)
 
     freq_map = {
+        # Form laqVzV
+        "839bb17d-6b61-48b9-b716-dafbb4b82002": "< 2 đơn/tháng",
+        "d6ed5b3d-422e-4d29-b547-1041707d7e10": "2 - 4 đơn/tháng",
+        "aa38ca6c-516a-4091-962e-80621dc282e0": "4 - 6 đơn/tháng",
+        "5ac96299-fd77-4b9b-bada-e78311b675c1": "6 - 8 đơn/tháng",
+        "a662f159-859e-4c2d-9b12-d8d13fe60253": "> 8 đơn/tháng",
+        # Legacy form J118j4
         "338ca9ac-a9be-4f70-8d8d-52bf6c9cd1c8": "< 2 đơn/tháng",
         "715ebb81-cfee-43f1-bf78-de86368dbac0": "2 - 4 đơn/tháng",
         "3ead4f73-ee69-496c-8872-d4df6d53d89b": "4 - 6 đơn/tháng",

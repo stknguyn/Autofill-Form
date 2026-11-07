@@ -577,10 +577,10 @@ class TestAdversarialExportService(unittest.TestCase):
         self.assertEqual(df["PC3_rev"].iloc[0], 4)
 
     def test_02_empty_records_export(self):
-        """Empty records input must return clean DataFrame with all 73 columns."""
+        """Empty records input must return clean DataFrame with all 72 columns."""
         df = ExportService.to_numeric_matrix([])
         self.assertEqual(len(df), 0)
-        self.assertEqual(len(df.columns), 73)
+        self.assertEqual(len(df.columns), 72)
 
         csv_bytes = ExportService.export_spss_csv([])
         self.assertTrue(len(csv_bytes) > 0)
