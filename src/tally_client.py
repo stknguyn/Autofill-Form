@@ -1,6 +1,6 @@
 """
 src/tally_client.py - Production-Grade Tally HTTP Client & Dry-Run Simulator
-Implements high-resilience form submission to api.tally.so/forms/J118j4/respond.
+Implements high-resilience form submission to api.tally.so/forms/laqVzV/respond.
 
 Features:
 - Thread-safe httpx connection pooling (40 max, 20 keepalive) and structured timeouts.
@@ -111,7 +111,7 @@ class TallyClient:
     Thread-safe across multiple concurrent worker threads.
     """
 
-    FORM_ID = "J118j4"
+    FORM_ID = "laqVzV"
     SUBMIT_URL = f"https://api.tally.so/forms/{FORM_ID}/respond"
 
     DEFAULT_USER_AGENT = (

@@ -185,10 +185,10 @@ class ExportService:
         "ATT": ("ATT1", "ATT2", "ATT3"),
         "SN": ("SN1", "SN2", "SN3"),
         "PBC": ("PBC1", "PBC2", "PBC3", "PBC4"),
-        "ITU": ("ITU1", "ITU2", "ITU3", "ITU4"),
+        "ITU": ("ITU1", "ITU2", "ITU3"),
     }
 
-    ALL_39_ITEMS: Tuple[str, ...] = (
+    ALL_38_ITEMS: Tuple[str, ...] = (
         "PU1", "PU2", "PU3", "PU4",
         "PEOU1", "PEOU2", "PEOU3", "PEOU4",
         "PES1", "PES2", "PES3", "PES4",
@@ -199,8 +199,9 @@ class ExportService:
         "ATT1", "ATT2", "ATT3",
         "SN1", "SN2", "SN3",
         "PBC1", "PBC2", "PBC3", "PBC4",
-        "ITU1", "ITU2", "ITU3", "ITU4",
+        "ITU1", "ITU2", "ITU3",
     )
+    ALL_39_ITEMS = ALL_38_ITEMS
 
     @classmethod
     def to_numeric_matrix(
@@ -535,8 +536,8 @@ class ExportService:
             ov_eval = "Xuất sắc (>= 0.90)" if overall_alpha >= 0.90 else ("Đạt chuẩn (>= 0.82)" if overall_alpha >= 0.82 else "Chưa đạt")
             c_rows.append({
                 "Construct Code": "OVERALL",
-                "Construct Name": "Toàn bộ Mô hình TAM & TPB (39 biến)",
-                "Items (k)": 39,
+                "Construct Name": "Toàn bộ Mô hình TAM & TPB (38 biến)",
+                "Items (k)": 38,
                 "Mean": "-",
                 "Std Dev": "-",
                 "Cronbach's Alpha": round(overall_alpha, 4),

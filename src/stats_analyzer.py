@@ -181,13 +181,13 @@ class StatsAnalyzer:
         ("ATT", "Attitude (Thái độ đối với dịch vụ)", 3, False),
         ("SN", "Subjective Norm (Chuẩn chủ quan)", 3, False),
         ("PBC", "Perceived Behavioral Control (Kiểm soát hành vi)", 4, False),
-        ("ITU", "Intention to Use (Ý định sử dụng)", 4, False),
+        ("ITU", "Intention to Use (Ý định sử dụng)", 3, False),
     ]
 
     def __init__(self):
         TallySchema.initialize()
 
-        self._global_tracker = StreamingCovarianceTracker(39)
+        self._global_tracker = StreamingCovarianceTracker(38)
         self._construct_trackers: Dict[str, StreamingCovarianceTracker] = {}
         self._construct_indices: Dict[str, List[int]] = {}
         self._code_to_idx: Dict[str, int] = {}
@@ -248,35 +248,35 @@ class StatsAnalyzer:
 
     def add_sample(self, likert_scores: Dict[str, Any]) -> None:
         """
-        Accepts dict of scores keyed by item code ('PU1'..'ITU4') or group UUID.
+        Accepts dict of scores keyed by item code ('PU1'..'ITU3') or group UUID.
         Automatically tracks raw PC and inverts PC items (7 - raw) for full-model psychometrics.
         """
-        vector_39 = np.zeros(39, dtype=np.float64)
+        vector_38 = np.zeros(38, dtype=np.float64)
         pc_raw_vector = np.zeros(3, dtype=np.float64)
 
-        # 1. Normalize scores to 39-item canonical vector
+        # 1. Normalize scores to 38-item canonical vector
         for code, g_idx in self._code_to_idx.items():
             val = self._extract_score(likert_scores, code)
             val = float(np.clip(val, 1.0, 6.0))
-            vector_39[g_idx] = val
+            vector_38[g_idx] = val
 
         # 2. Extract raw PC for raw tracking
         for p_i, g_idx in enumerate(self._pc_indices):
-            pc_raw_vector[p_i] = vector_39[g_idx]
+            pc_raw_vector[p_i] = vector_38[g_idx]
 
         # 3. Update raw PC tracker
         self._raw_pc_tracker.update(pc_raw_vector)
 
         # 4. Invert PC items for the global scale & construct scale
         for g_idx in self._pc_indices:
-            vector_39[g_idx] = 7.0 - vector_39[g_idx]
+            vector_38[g_idx] = 7.0 - vector_38[g_idx]
 
         # 5. Update global tracker
-        self._global_tracker.update(vector_39)
+        self._global_tracker.update(vector_38)
 
         # 6. Update each construct tracker
         for code, indices in self._construct_indices.items():
-            sub_vec = vector_39[indices]
+            sub_vec = vector_38[indices]
             self._construct_trackers[code].update(sub_vec)
 
         self._sample_count += 1

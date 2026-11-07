@@ -117,8 +117,8 @@ class TestPersonaEngine500Profiles(unittest.TestCase):
         self.assertEqual(len(self.profiles), 500)
         for idx, p in enumerate(self.profiles):
             self.assertIsInstance(p, RespondentProfile, f"Profile {idx} is not RespondentProfile")
-            self.assertEqual(len(p.likert_scores), 39, f"Profile {idx} has {len(p.likert_scores)} likert items, expected 39")
-            self.assertEqual(len(p.payload_responses), 51, f"Profile {idx} has {len(p.payload_responses)} responses, expected 51")
+            self.assertEqual(len(p.likert_scores), 38, f"Profile {idx} has {len(p.likert_scores)} likert items, expected 38")
+            self.assertEqual(len(p.payload_responses), 50, f"Profile {idx} has {len(p.payload_responses)} responses, expected 50")
 
     def test_02_zero_cross_consistency_violations_all_500(self):
         """Assert strictly 0 cross-consistency violations across all 500 profiles."""
@@ -255,7 +255,7 @@ class TestTallySchemaPayloadValidation500(unittest.TestCase):
     """
     Validates each of the 500 generated payloads against TallySchema.validate_payload().
     Verifies envelope structure, distinct RFC 4122 v4 UUIDs, question/option membership,
-    and 39 Likert items.
+    and 38 Likert items.
     """
 
     @classmethod
@@ -324,8 +324,8 @@ class TestTallySchemaPayloadValidation500(unittest.TestCase):
                             f"Payload {idx} has unrecognized optionUuid: {opt_uuid}",
                         )
 
-    def test_04_likert_39_items_integrity(self):
-        """Assert all 39 Likert questions exist in payload and options map to scores 1..6."""
+    def test_04_likert_38_items_integrity(self):
+        """Assert all 38 Likert questions exist in payload and options map to scores 1..6."""
         for idx, payload in enumerate(self.payloads):
             responses = payload["responses"]
             for q_def in TallySchema.LIKERT_QUESTIONS:

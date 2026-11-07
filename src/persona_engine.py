@@ -29,92 +29,92 @@ from src.tally_schema import (
 # Canonical Demographic Option UUIDs (from consolidated_schema.json)
 # ---------------------------------------------------------------------------
 
-# Q1 Consent (groupUuid: 3e5a203f-e81c-45f4-88c8-70aa4cc36696)
-OPT_CONSENT_AGREE = "1b84910e-a410-455c-8595-f4f73c7ea7ff"
-OPT_CONSENT_DISAGREE = "18b5cbd6-040e-4ef8-b213-7fc038f1e6df"
+# Q1 Consent (groupUuid: 421b7f82-73ab-4c8b-991b-36631dd828f5)
+OPT_CONSENT_AGREE = "8dc2c356-928c-45f7-9eb0-7c23595e6a32"
+OPT_CONSENT_DISAGREE = "f13046af-a30b-43f1-b194-619a82673c98"
 
-# Q2 Shopee Usage (groupUuid: c2a8c967-6d50-4b90-981e-2b4acbb5af01)
-OPT_USAGE_TODAY_YESTERDAY = "9232238d-d74e-4520-85c4-f87c8b827c1c"
-OPT_USAGE_WITHIN_1_WEEK   = "15c0ab5e-e45d-4a8b-8234-3a6eb117898b"
-OPT_USAGE_2W_TO_1M        = "0ed4d205-154f-4333-94ea-3c1cd02812bf"
-OPT_USAGE_1M_TO_6M        = "cd8db0c7-34c8-4a41-a608-a7206f6ec8a9"
-OPT_USAGE_OVER_6M         = "ec6f15d1-7feb-49ef-aa4a-58b6c6a22d56"
-OPT_USAGE_NEVER           = "42a1fc17-7d7a-4cc4-9eeb-3df094a64b86"
+# Q2 Shopee Usage (groupUuid: 58b651ba-368a-4378-830f-6e757b34aced)
+OPT_USAGE_TODAY_YESTERDAY = "fd803980-e9d9-48db-b8c8-a67481648950"
+OPT_USAGE_WITHIN_1_WEEK   = "1f5b611b-db7b-4084-9e4b-055f54eacbae"
+OPT_USAGE_2W_TO_1M        = "8312b408-472f-4155-9d54-c0eb187a859a"
+OPT_USAGE_1M_TO_6M        = "869c0446-e4fa-49d9-8431-afb649aa64bd"
+OPT_USAGE_OVER_6M         = "16612a82-802a-4e72-9c28-50f9647b9666"
+OPT_USAGE_NEVER           = "a823801f-c57b-4589-986b-5c0638b62330"
 
-# Q3 Reason Never (groupUuid: e2948fdb-2d9a-413c-8a8b-96ff61314f0c)
-REASON_NEVER_QUESTION_UUID = "e2948fdb-2d9a-413c-8a8b-96ff61314f0c"
+# Q3 Reason Never (groupUuid: 7dbc0210-2d97-42d5-ab13-e09d16fc7d99)
+REASON_NEVER_QUESTION_UUID = "7dbc0210-2d97-42d5-ab13-e09d16fc7d99"
 
-# Q5 Gender (groupUuid: 7320b9c3-a3ee-462a-b7a3-a7ca1098f66a)
-GENDER_QUESTION_UUID = "7320b9c3-a3ee-462a-b7a3-a7ca1098f66a"
-OPT_GENDER_NAM   = "7a33c383-e672-4bdc-97e1-985ba902247d"
-OPT_GENDER_NU    = "428cad0c-6d8e-4f12-bbec-8c593b428fc4"
-OPT_GENDER_KHAC  = "200936e3-785a-4d5b-8c00-226b5ca1735a"
+# Q5 Gender (groupUuid: 372269dc-973d-4c7b-a6eb-ce3a599d5895)
+GENDER_QUESTION_UUID = "372269dc-973d-4c7b-a6eb-ce3a599d5895"
+OPT_GENDER_NAM   = "81d03d10-18e3-4cdc-9fab-46813d36722f"
+OPT_GENDER_NU    = "12989b94-19ce-4f75-bd5d-39f0b2f54159"
+OPT_GENDER_KHAC  = "94cb99a4-5c8f-4c99-8a40-bf05960e3947"
 
-# Q6 Location (groupUuid: 62a19387-f711-4a1e-9a81-950342ee232b)
-LOCATION_QUESTION_UUID = "62a19387-f711-4a1e-9a81-950342ee232b"
-OPT_LOC_HCM      = "78ef19e6-8b27-4801-ae86-30118c8f333b"
-OPT_LOC_HANOI    = "a1561c8f-20a1-4571-b447-a23943e98f0c"
-OPT_LOC_DANANG   = "4d4962c3-86f5-4d5b-bc59-536d23df2db5"
-OPT_LOC_KHAC     = "5e069c99-7562-4c9d-88d8-af4fc3a197d9"
+# Q6 Location (groupUuid: 27ad8763-6ae2-499f-a741-42e0ab68e9b4)
+LOCATION_QUESTION_UUID = "27ad8763-6ae2-499f-a741-42e0ab68e9b4"
+OPT_LOC_HCM      = "2b2be2cd-9c9e-4e12-b4af-05cb909dc9b4"
+OPT_LOC_HANOI    = "11034d07-1c9f-499d-836d-f95c850fcf11"
+OPT_LOC_DANANG   = "6be9da09-a0d5-4aee-a5d7-81224d579bf6"
+OPT_LOC_KHAC     = "0d3be16b-0c5c-4048-adf0-b932b865f6d3"
 
-# Q7 Education (groupUuid: 59ece19f-f02e-47f6-876b-e5dbc884fe21)
-EDUCATION_QUESTION_UUID = "59ece19f-f02e-47f6-876b-e5dbc884fe21"
-OPT_EDU_THPT         = "5d437e74-b829-4faf-bdac-50b0f469cfcc"
-OPT_EDU_TRUNG_CAP    = "0a44e9b4-7d64-47b9-8c7b-35f86ff37d69"
-OPT_EDU_DAI_HOC      = "7db417a3-7660-47d7-b2bc-f61382beed19"
-OPT_EDU_SAU_DAI_HOC  = "e331248b-bd83-4a1e-a165-ef253eb31caf"
-OPT_EDU_KHAC         = "a31a2b45-dacb-4700-b2f7-d6b5e3ddd6c8"
+# Q7 Education (groupUuid: bed5815c-7c6f-4f2e-b3ee-ee2f004e098c)
+EDUCATION_QUESTION_UUID = "bed5815c-7c6f-4f2e-b3ee-ee2f004e098c"
+OPT_EDU_THPT         = "3161ecf9-9865-49bd-bbee-6d65c0989947"
+OPT_EDU_TRUNG_CAP    = "d738f4c3-5616-4ee2-a8ec-573e8e7d43ba"
+OPT_EDU_DAI_HOC      = "bfa4fac0-2b4b-44e3-9f22-9e8cd6768da0"
+OPT_EDU_SAU_DAI_HOC  = "763d2b97-8ec9-4e6b-88aa-7b9404dc0974"
+OPT_EDU_KHAC         = "c535ae1a-c0f7-49ae-83bd-79ad09c0dbe9"
 
-# Q8 Employment (groupUuid: bf78cd4f-824d-4b02-9d46-1a915edd1204)
-EMPLOYMENT_QUESTION_UUID = "bf78cd4f-824d-4b02-9d46-1a915edd1204"
-OPT_EMP_PART_TIME        = "af1929cf-8d02-4c2a-b152-33facb89b2ae"
-OPT_EMP_FULL_TIME        = "226d694d-7ba6-4dfc-a600-ad508d32a2fd"
-OPT_EMP_FREELANCER       = "690cab48-5280-4e7c-91c8-bf2b8b751d35"
-OPT_EMP_TIM_VIEC         = "5bceec63-270c-4305-b399-834a1ef7244c"
-OPT_EMP_KHONG_LAO_DONG   = "ff63da71-296c-4e14-9bb7-26a2afb35458"
-OPT_EMP_KHAC             = "87bdb602-4a9b-43cf-9f73-22af4be99496"
+# Q8 Employment (groupUuid: 63ef9487-2829-423a-a737-96e0ddb8728d)
+EMPLOYMENT_QUESTION_UUID = "63ef9487-2829-423a-a737-96e0ddb8728d"
+OPT_EMP_PART_TIME        = "96d8be6e-6b29-4942-b452-8674ce1c43e8"
+OPT_EMP_FULL_TIME        = "42ca8b29-bcfa-4e54-8b76-57d5b972cc38"
+OPT_EMP_FREELANCER       = "f96fa88c-3292-46a8-8444-e5a05bb3e65c"
+OPT_EMP_TIM_VIEC         = "adc29abb-54d6-4344-89d9-b084760ae0f9"
+OPT_EMP_KHONG_LAO_DONG   = "9e225384-7057-4bd2-8f9b-737d5839365e"
+OPT_EMP_KHAC             = "3739968d-b0cb-4501-ba9e-eadccdff1ab5"
 
-# Q9 Profession (groupUuid: ed7f2c7d-2664-4a4f-b35e-fd3d81543f17)
-PROFESSION_QUESTION_UUID = "ed7f2c7d-2664-4a4f-b35e-fd3d81543f17"
-OPT_PROF_KINH_DOANH       = "8983e9f9-8b76-4320-bc85-6d9d37e6b9db"
-OPT_PROF_CNTT             = "e02f9cb1-2892-403e-a6e9-389b6dad9920"
-OPT_PROF_SAN_XUAT         = "2469248c-24c6-4fe6-ac3c-d4a45aef7d1d"
-OPT_PROF_GIAO_DUC         = "098f87c2-1557-4a1a-94a7-e0ab31fe125e"
-OPT_PROF_VIEN_CHUC        = "6ee6cb19-bfc4-4bb9-8680-b351b0351535"
-OPT_PROF_VU_TRANG         = "22d795f4-c56a-48af-9459-3299fcc47a8b"
-OPT_PROF_FREELANCE_CONTENT= "d4685d75-46a3-4954-8588-d4fed0921c5a"
-OPT_PROF_KHAC             = "ac6208be-c0bf-4f2e-bcb0-1f195b64bbe5"
+# Q9 Profession (groupUuid: e3f21280-31f5-470e-b8e9-0a665eb5d685)
+PROFESSION_QUESTION_UUID = "e3f21280-31f5-470e-b8e9-0a665eb5d685"
+OPT_PROF_KINH_DOANH       = "1e2c4b0a-1cc8-4bb8-a7a1-9f0f7533a99d"
+OPT_PROF_CNTT             = "79578f1c-3e11-4dcb-8c9b-088bbd765ec7"
+OPT_PROF_SAN_XUAT         = "f30177c1-37ce-4d03-9106-513289cc1cd3"
+OPT_PROF_GIAO_DUC         = "64796212-ded1-4931-91c9-c288484e29d6"
+OPT_PROF_VIEN_CHUC        = "98499a25-58ed-4a36-a86b-44594bbda657"
+OPT_PROF_VU_TRANG         = "9e485b85-f141-449a-a2c5-f4025b781e67"
+OPT_PROF_FREELANCE_CONTENT= "2b9ec887-2816-43f5-93b8-c6b39822d458"
+OPT_PROF_KHAC             = "5f87082a-b02d-46ea-9743-cabe2eb347ea"
 
-# Q10 Shopping Frequency (groupUuid: ee7dac3f-e7d7-45c1-9763-7df533d54930)
-FREQUENCY_QUESTION_UUID = "ee7dac3f-e7d7-45c1-9763-7df533d54930"
-OPT_FREQ_UNDER_2 = "338ca9ac-a9be-4f70-8d8d-52bf6c9cd1c8"
-OPT_FREQ_2_TO_4  = "715ebb81-cfee-43f1-bf78-de86368dbac0"
-OPT_FREQ_4_TO_6  = "3ead4f73-ee69-496c-8872-d4df6d53d89b"
-OPT_FREQ_6_TO_8  = "cf2b1d3d-5307-4220-a6b9-9649ee940d75"
-OPT_FREQ_OVER_8  = "d5586e4c-5b04-4174-8200-3162232169b7"
+# Q10 Shopping Frequency (groupUuid: 26b28f73-4a1d-4796-8657-7230bfc84784)
+FREQUENCY_QUESTION_UUID = "26b28f73-4a1d-4796-8657-7230bfc84784"
+OPT_FREQ_UNDER_2 = "839bb17d-6b61-48b9-b716-dafbb4b82002"
+OPT_FREQ_2_TO_4  = "d6ed5b3d-422e-4d29-b547-1041707d7e10"
+OPT_FREQ_4_TO_6  = "aa38ca6c-516a-4091-962e-80621dc282e0"
+OPT_FREQ_6_TO_8  = "5ac96299-fd77-4b9b-bada-e78311b675c1"
+OPT_FREQ_OVER_8  = "a662f159-859e-4c2d-9b12-d8d13fe60253"
 
-# Q11 Categories (groupUuid: c1dc93e6-0cc1-43dd-9a99-4a6192d3dab7)
-CATEGORIES_QUESTION_UUID = "c1dc93e6-0cc1-43dd-9a99-4a6192d3dab7"
-OPT_CAT_FASHION   = "78d7ded3-bcdf-4733-8827-45afee38f3f8"
-OPT_CAT_BEAUTY    = "5d64fce1-3540-47ad-af8d-18cacdcbdc0c"
-OPT_CAT_TECH      = "5cc24510-0e1e-4b47-b10f-cbe4771fbb98"
-OPT_CAT_BOOKS     = "24a04efa-df7b-4633-b71a-273b778c1428"
-OPT_CAT_HOUSEHOLD = "325c0103-7cc6-4ba5-a243-78bc997fec08"
-OPT_CAT_OTHER     = "9d0b358f-ac81-41eb-aed7-2489607167ac"
+# Q11 Categories (groupUuid: cf2f5689-c127-484f-8a39-33e270c19974)
+CATEGORIES_QUESTION_UUID = "cf2f5689-c127-484f-8a39-33e270c19974"
+OPT_CAT_FASHION   = "05e0577b-9396-4e20-89b2-73666533bf53"
+OPT_CAT_BEAUTY    = "4616ca98-033a-4437-9560-c207e5451970"
+OPT_CAT_TECH      = "5d3dd3ea-5f25-4993-9142-a657e9980c3c"
+OPT_CAT_BOOKS     = "75f90bde-fa5d-440e-8346-11b022702e35"
+OPT_CAT_HOUSEHOLD = "7c0eaae8-c244-465d-a488-1dfd4c4f2685"
+OPT_CAT_OTHER     = "53132a7b-8a50-44a8-ac6c-c93b427161fa"
 
-# Q12 Pain Points (groupUuid: 2e164c14-6be1-4757-84dd-5c9d5fb098fb)
-PAIN_POINTS_QUESTION_UUID = "2e164c14-6be1-4757-84dd-5c9d5fb098fb"
-OPT_PAIN_BUILDING     = "3a21da3a-44b5-4f40-8113-665f811f54d2"
-OPT_PAIN_PRIVACY_LOSS = "a410ef25-369e-4a45-a8f7-7237c8a6f102"
-OPT_PAIN_NONE         = "77ae6712-d5be-4f69-8612-2f32e0db7900"
-OPT_PAIN_OTHER        = "9d4539b3-d3cf-44ea-aa96-1ef047f726f8"
+# Q12 Pain Points (groupUuid: 9b8dcdcd-549d-468e-ad59-a9a1dd443aaf)
+PAIN_POINTS_QUESTION_UUID = "9b8dcdcd-549d-468e-ad59-a9a1dd443aaf"
+OPT_PAIN_BUILDING     = "1352881b-0612-47b5-b430-6312860110e7"
+OPT_PAIN_PRIVACY_LOSS = "b56486fb-8ace-4ce9-b39c-d191eba56262"
+OPT_PAIN_NONE         = "291b999d-46e6-4aae-9fbb-13792089b337"
+OPT_PAIN_OTHER        = "800ff186-ce6e-44b9-b55d-433fb96ef0a0"
 
-# Q13 Awareness (groupUuid: 0048f395-2c46-4ac1-89c6-029125232f2d)
-AWARENESS_QUESTION_UUID = "0048f395-2c46-4ac1-89c6-029125232f2d"
-OPT_AWARE_NEVER       = "7edb7ecf-d8ff-4a9f-919d-5bd76108a63d"
-OPT_AWARE_SEEN_UNUSED = "111f08e5-cc2b-409e-8ae5-60e97882c9d0"
-OPT_AWARE_USED_ONCE   = "e885b776-6064-4998-bf6c-4a886cc6cb5e"
-OPT_AWARE_OTHER       = "16be7add-9da3-4489-a769-077d36eb26c1"
+# Q13 Awareness (groupUuid: 512c828d-985a-42f8-b48a-3a4fd1cec6b7)
+AWARENESS_QUESTION_UUID = "512c828d-985a-42f8-b48a-3a4fd1cec6b7"
+OPT_AWARE_NEVER       = "0273671f-dd31-469e-94d8-139c05870f77"
+OPT_AWARE_SEEN_UNUSED = "ed88667d-22a4-4338-b7c3-dabb08596a76"
+OPT_AWARE_USED_ONCE   = "67937054-eb87-4668-a33c-b05b26b797c5"
+OPT_AWARE_OTHER       = "ea46b63f-fa8d-44b4-a075-b85173d34889"
 
 
 # ---------------------------------------------------------------------------
@@ -175,8 +175,8 @@ CONSTRUCT_CONFIGS: Tuple[ConstructConfig, ...] = (
         (0.87, 0.88, 0.86, 0.89), (0.21, 0.22, 0.20, 0.21)
     ),
     ConstructConfig(
-        "ITU", ("ITU1", "ITU2", "ITU3", "ITU4"), False, 0.88, 4.65, 0.70,
-        (0.87, 0.88, 0.86, 0.89), (0.21, 0.22, 0.20, 0.21)
+        "ITU", ("ITU1", "ITU2", "ITU3"), False, 0.88, 4.65, 0.70,
+        (0.88, 0.89, 0.87), (0.19, 0.20, 0.18)
     ),
 )
 
@@ -452,7 +452,7 @@ class PersonaEngine:
     ) -> RespondentProfile:
         """
         Generates a single fully consistent Gen Z respondent profile with demographics,
-        Likert scores across 39 items (alpha >= 0.82), and valid Tally API responses payload.
+        Likert scores across 38 items (alpha >= 0.82), and valid Tally API responses payload.
         """
         if rng is None:
             np_rng = self.np_rng
@@ -645,7 +645,7 @@ class PersonaEngine:
         consent_uuid = OPT_CONSENT_AGREE
         usage_uuid = self.rng.choice(USAGE_QUALIFIED_UUIDS)
 
-        # 12. Synthesize 39 Likert items via Standardized Orthogonal Latent Trait Model
+        # 12. Synthesize 38 Likert items via Standardized Orthogonal Latent Trait Model
         construct_means = weights.get("construct_means") if isinstance(weights, dict) else None
         likert_scores = self._generate_likert_scores(rng=np_rng, construct_means=construct_means)
 
@@ -665,7 +665,7 @@ class PersonaEngine:
             AWARENESS_QUESTION_UUID: [aware_uuid],
         }
 
-        # Populate all 39 Likert questions with option UUID matching raw score
+        # Populate all 38 Likert questions with option UUID matching raw score
         for q_def in TallySchema.LIKERT_QUESTIONS:
             score = likert_scores[q_def.code]
             opt_uuid = q_def.score_to_uuid[score]
@@ -713,7 +713,7 @@ class PersonaEngine:
         construct_means: Optional[Dict[str, float]] = None,
     ) -> Dict[str, int]:
         """
-        Generates 39 Likert raw integer scores (1-6) using standardized orthogonal latent trait model.
+        Generates 38 Likert raw integer scores (1-6) using standardized orthogonal latent trait model.
         Mathematically guarantees Cronbach's Alpha >= 0.82 across all 11 constructs and overall >= 0.90.
         Supports optional construct_means dictionary to customize latent dimension targets.
         """

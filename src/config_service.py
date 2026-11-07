@@ -30,7 +30,7 @@ DEFAULT_CONSTRUCT_BENCHMARKS: Dict[str, float] = {
 
 DEFAULT_SESSION_CONFIG: Dict[str, Any] = {
     "campaign": {
-        "form_url": "https://tally.so/r/J118j4",
+        "form_url": "https://tally.so/r/laqVzV",
         "target_count": 150,
         "num_workers": 6,
         "master_seed": 42,
@@ -295,7 +295,7 @@ class ConfigService:
 
         return {
             "campaign": {
-                "form_url": str(session_state_obj.get("cfg_form_url", "https://tally.so/r/J118j4")),
+                "form_url": str(session_state_obj.get("cfg_form_url", "https://tally.so/r/laqVzV")),
                 "target_count": int(session_state_obj.get("cfg_target_count", 150)),
                 "num_workers": int(session_state_obj.get("cfg_num_workers", 6)),
                 "master_seed": int(session_state_obj.get("cfg_master_seed", 42)),

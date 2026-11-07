@@ -52,9 +52,10 @@ ALL_CONSTRUCT_CODES: Tuple[str, ...] = (
     "PU", "PEOU", "PES", "PC", "PI", "SE", "LC", "ATT", "SN", "PBC", "ITU"
 )
 
-ALL_39_LIKERT_ITEMS: Tuple[str, ...] = tuple(
+ALL_38_LIKERT_ITEMS: Tuple[str, ...] = tuple(
     f"{c.code}{i+1}" for c in CONSTRUCT_CONFIGS for i in range(len(c.item_codes))
 )
+ALL_39_LIKERT_ITEMS = ALL_38_LIKERT_ITEMS
 
 
 class TestPRNGIsolationAndRepeatability(unittest.TestCase):
@@ -102,9 +103,9 @@ class TestPRNGIsolationAndRepeatability(unittest.TestCase):
             if p_a.demographics != p_b.demographics:
                 mismatches.append(f"Resp {i}: demographics dict mismatch")
 
-            # 39 Likert items
-            if len(p_a.likert_scores) != 39 or len(p_b.likert_scores) != 39:
-                mismatches.append(f"Resp {i}: Likert score count is not 39")
+            # 38 Likert items
+            if len(p_a.likert_scores) != 38 or len(p_b.likert_scores) != 38:
+                mismatches.append(f"Resp {i}: Likert score count is not 38")
             if p_a.likert_scores != p_b.likert_scores:
                 diff_keys = [k for k in p_a.likert_scores if p_a.likert_scores.get(k) != p_b.likert_scores.get(k)]
                 mismatches.append(f"Resp {i}: Likert items mismatch on {diff_keys}")
@@ -471,17 +472,17 @@ class TestMonteCarloPsychometrics(unittest.TestCase):
             profiles = res["profiles"]
 
             # Compute Cronbach's Alpha without reversing PC
-            # Using raw 39-item matrix
-            matrix_raw = np.zeros((len(profiles), 39), dtype=np.float64)
+            # Using raw 38-item matrix
+            matrix_raw = np.zeros((len(profiles), 38), dtype=np.float64)
             for r_idx, p in enumerate(profiles):
-                for c_idx, item_code in enumerate(ALL_39_LIKERT_ITEMS):
+                for c_idx, item_code in enumerate(ALL_38_LIKERT_ITEMS):
                     matrix_raw[r_idx, c_idx] = float(p.likert_scores[item_code])
 
             # Calculate alpha directly on raw matrix (without PC inversion)
             item_vars_raw = np.var(matrix_raw, axis=0, ddof=1)
             total_scores_raw = np.sum(matrix_raw, axis=1)
             total_var_raw = float(np.var(total_scores_raw, ddof=1))
-            k = 39
+            k = 38
             alpha_unreversed = (k / (k - 1)) * (1.0 - np.sum(item_vars_raw) / total_var_raw)
 
             # Properly reversed overall alpha from StatsAnalyzer

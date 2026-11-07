@@ -75,7 +75,7 @@ def _create_valid_completed_payload(
     - Q4 (Age): 21 (valid Gen Z integer 18-27)
     - Q5-Q10, Q13 (Demographics & Habit): Valid single-choice option UUIDs
     - Q11, Q12 (Categories & Pain Points): Valid checkbox option UUID lists
-    - 39 Likert questions (Q14-Q52): Valid 6-point scale option UUIDs
+    - 38 Likert questions: Valid 6-point scale option UUIDs
     Excludes Q3 (REASON_NEVER) which is only for the disqualified pathway.
     """
     TallySchema.initialize()
@@ -120,21 +120,21 @@ class TestTallySchemaParity(unittest.TestCase):
             cls.ground_truth = json.load(f)
 
     def test_01_total_question_count(self):
-        """Verify total question blocks count is exactly 52."""
-        self.assertEqual(len(TallySchema.QUESTION_MAP), 52)
-        self.assertEqual(len(self.ground_truth), 52)
-        self.assertEqual(len(TallySchema.QUESTIONS), 52)
+        """Verify total question blocks count is exactly 51."""
+        self.assertEqual(len(TallySchema.QUESTION_MAP), 51)
+        self.assertEqual(len(self.ground_truth), 51)
+        self.assertEqual(len(TallySchema.QUESTIONS), 51)
 
     def test_02_total_option_count(self):
-        """Verify total choice options count across all questions is exactly 293."""
+        """Verify total choice options count across all questions is exactly 287."""
         total_schema_options = sum(len(q.options) for q in TallySchema.QUESTION_MAP.values())
         total_gt_options = sum(len(q.get("options", [])) for q in self.ground_truth)
-        self.assertEqual(total_schema_options, 293)
-        self.assertEqual(total_gt_options, 293)
-        self.assertEqual(len(TallySchema.ALL_OPTION_UUIDS), 293)
+        self.assertEqual(total_schema_options, 287)
+        self.assertEqual(total_gt_options, 287)
+        self.assertEqual(len(TallySchema.ALL_OPTION_UUIDS), 287)
 
     def test_03_question_type_distribution(self):
-        """Verify distribution of question types: 48 MULTIPLE_CHOICE, 3 CHECKBOXES, 1 INPUT_NUMBER."""
+        """Verify distribution of question types: 47 MULTIPLE_CHOICE, 3 CHECKBOXES, 1 INPUT_NUMBER."""
         types = {q.type for q in TallySchema.QUESTION_MAP.values()}
         self.assertEqual(types, {"MULTIPLE_CHOICE", "CHECKBOXES", "INPUT_NUMBER"})
 
@@ -142,30 +142,30 @@ class TestTallySchemaParity(unittest.TestCase):
         cb = sum(1 for q in TallySchema.QUESTION_MAP.values() if q.type == "CHECKBOXES")
         num = sum(1 for q in TallySchema.QUESTION_MAP.values() if q.type == "INPUT_NUMBER")
 
-        self.assertEqual(mc, 48)
+        self.assertEqual(mc, 47)
         self.assertEqual(cb, 3)
         self.assertEqual(num, 1)
 
         # Check exact group UUIDs for non-MULTIPLE_CHOICE
         expected_cb_uuids = {
-            "e2948fdb-2d9a-413c-8a8b-96ff61314f0c",  # Q3
-            "c1dc93e6-0cc1-43dd-9a99-4a6192d3dab7",  # Q11
-            "2e164c14-6be1-4757-84dd-5c9d5fb098fb",  # Q12
+            "7dbc0210-2d97-42d5-ab13-e09d16fc7d99",  # Q3
+            "cf2f5689-c127-484f-8a39-33e270c19974",  # Q11
+            "9b8dcdcd-549d-468e-ad59-a9a1dd443aaf",  # Q12
         }
         actual_cb_uuids = {
             q.group_uuid for q in TallySchema.QUESTION_MAP.values() if q.type == "CHECKBOXES"
         }
         self.assertEqual(actual_cb_uuids, expected_cb_uuids)
 
-        expected_num_uuid = "d8ec1647-4508-481b-b8ea-302737d9a5e9"  # Q4
+        expected_num_uuid = "92570a0c-41e3-4adf-8bf7-93fc01b0a66b"  # Q4
         actual_num_uuids = [
             q.group_uuid for q in TallySchema.QUESTION_MAP.values() if q.type == "INPUT_NUMBER"
         ]
         self.assertEqual(actual_num_uuids, [expected_num_uuid])
 
     def test_04_likert_scale_construct_distribution(self):
-        """Verify 39 Likert items across 11 constructs, each having exactly 6 scale points."""
-        self.assertEqual(len(TallySchema.LIKERT_QUESTIONS), 39)
+        """Verify 38 Likert items across 11 constructs, each having exactly 6 scale points."""
+        self.assertEqual(len(TallySchema.LIKERT_QUESTIONS), 38)
 
         for q in TallySchema.LIKERT_QUESTIONS:
             self.assertTrue(q.is_likert)
@@ -184,19 +184,16 @@ class TestTallySchemaParity(unittest.TestCase):
             "ATT": 3,
             "SN": 3,
             "PBC": 4,
-            "ITU": 4,
+            "ITU": 3,
         }
 
         actual_counts = {c: len(ql) for c, ql in TallySchema.CONSTRUCT_MAP.items()}
         self.assertEqual(actual_counts, expected_construct_counts)
 
     def test_05_pc_scale_reversal_flags(self):
-        """Verify Perceived Costs questions Q26, Q27, Q28 have is_reverse=True and reverse scoring."""
-        pc_uuids = [
-            "985711c7-1796-44aa-af77-4b98b65fb747",  # PC1
-            "e1f17849-dda8-47c2-be7c-2c4a8c6a2729",  # PC2
-            "6c0eb268-3e17-4747-88b2-9a1cbee613a9",  # PC3
-        ]
+        """Verify Perceived Costs questions have is_reverse=True and reverse scoring."""
+        pc_uuids = [q.group_uuid for q in TallySchema.CONSTRUCT_MAP["PC"]]
+        self.assertEqual(len(pc_uuids), 3)
         for pc_uuid in pc_uuids:
             q = TallySchema.QUESTION_MAP.get(pc_uuid)
             self.assertIsNotNone(q)
@@ -224,12 +221,8 @@ class TestTallySchemaParity(unittest.TestCase):
         for bad_uuid in blacklist:
             self.assertNotIn(bad_uuid, all_uuids, f"Draft UUID {bad_uuid} detected in schema!")
 
-        canonical_pes_uuids = [
-            "ace24688-749b-4683-9e5f-27c2ac489bf7",
-            "8e2a4db0-dd93-477f-b21e-a05dc543fd3b",
-            "e80d7db5-eff9-4ba5-91f4-9bb6477a606d",
-            "c802b48b-eb6b-4b80-8038-18c6d705cb4a",
-        ]
+        canonical_pes_uuids = [q.group_uuid for q in TallySchema.CONSTRUCT_MAP["PES"]]
+        self.assertEqual(len(canonical_pes_uuids), 4)
         for pes_uuid in canonical_pes_uuids:
             self.assertIn(pes_uuid, TallySchema.QUESTION_MAP)
 
@@ -454,7 +447,7 @@ class TestTallyClientNetworkAndErrors(unittest.TestCase):
 
     def test_16_client_nextjs_request_headers(self):
         """Verify client constructs all 13 authentic Next.js request headers."""
-        client = TallyClient(form_id="J118j4")
+        client = TallyClient(form_id="laqVzV")
         headers = client.get_headers()
 
         expected_headers = {
@@ -463,7 +456,7 @@ class TestTallyClientNetworkAndErrors(unittest.TestCase):
             "Accept": "application/json, text/plain, */*",
             "Accept-Language": "vi,en-US;q=0.9,en;q=0.8",
             "Origin": "https://tally.so",
-            "Referer": "https://tally.so/r/J118j4",
+            "Referer": "https://tally.so/r/laqVzV",
             "tally-version": "2025-01-15",
             "Sec-Ch-Ua-Mobile": "?0",
             "Sec-Ch-Ua-Platform": '"Windows"',
@@ -482,9 +475,9 @@ class TestTallyClientNetworkAndErrors(unittest.TestCase):
 
     def test_17_client_target_endpoint(self):
         """Verify client endpoint and SUBMIT_URL constant are strictly formatted."""
-        client = TallyClient(form_id="J118j4")
-        self.assertEqual(client.endpoint, "https://api.tally.so/forms/J118j4/respond")
-        self.assertEqual(TallyClient.SUBMIT_URL, "https://api.tally.so/forms/J118j4/respond")
+        client = TallyClient(form_id="laqVzV")
+        self.assertEqual(client.endpoint, "https://api.tally.so/forms/laqVzV/respond")
+        self.assertEqual(TallyClient.SUBMIT_URL, "https://api.tally.so/forms/laqVzV/respond")
 
     def test_18_http_200_success_response_parsing(self):
         """Verify successful HTTP 200 response parses submissionId."""
@@ -705,7 +698,7 @@ class TestTallyNegativeBoundaries(unittest.TestCase):
             TallySchema.validate_payload(p)
 
     def test_neg_02_unregistered_uuid_question_key(self):
-        """NEG-02: Valid UUID v4 not present in canonical 52 questions raises TallyValidationError."""
+        """NEG-02: Valid UUID v4 not present in canonical 51 questions raises TallyValidationError."""
         p = dict(self.valid_payload)
         p["responses"] = dict(self.valid_payload["responses"])
         p["responses"]["11111111-2222-4333-8444-555555555555"] = ["any-option"]
@@ -716,8 +709,9 @@ class TestTallyNegativeBoundaries(unittest.TestCase):
         """NEG-03: Option UUID belonging to Q5 passed into Q14 raises TallyValidationError."""
         p = dict(self.valid_payload)
         p["responses"] = dict(self.valid_payload["responses"])
-        q5_opt = TallySchema.QUESTION_MAP["7320b9c3-a3ee-462a-b7a3-a7ca1098f66a"].options[0].uuid
-        pu1_uuid = "748c69c8-0062-4bd3-9587-f76778ca3117"
+        q5_def = TallySchema.CODE_MAP["Q5_GENDER"]
+        q5_opt = q5_def.options[0].uuid
+        pu1_uuid = TallySchema.LIKERT_QUESTIONS[0].group_uuid
         p["responses"][pu1_uuid] = [q5_opt]
         with self.assertRaises(TallyValidationError):
             TallySchema.validate_payload(p)
@@ -783,7 +777,7 @@ class TestTallyNegativeBoundaries(unittest.TestCase):
         """NEG-12: Multiple options on single-choice question raises TallyValidationError."""
         p = dict(self.valid_payload)
         p["responses"] = dict(self.valid_payload["responses"])
-        q5_def = TallySchema.QUESTION_MAP["7320b9c3-a3ee-462a-b7a3-a7ca1098f66a"]
+        q5_def = TallySchema.CODE_MAP["Q5_GENDER"]
         p["responses"][q5_def.group_uuid] = [q5_def.options[0].uuid, q5_def.options[1].uuid]
         with self.assertRaises(TallyValidationError):
             TallySchema.validate_payload(p)
@@ -792,7 +786,7 @@ class TestTallyNegativeBoundaries(unittest.TestCase):
         """NEG-13: Checkbox value passed as bare string instead of list raises TallyValidationError."""
         p = dict(self.valid_payload)
         p["responses"] = dict(self.valid_payload["responses"])
-        q11_uuid = "c1dc93e6-0cc1-43dd-9a99-4a6192d3dab7"
+        q11_uuid = TallySchema.CODE_MAP["Q11_CATEGORIES"].group_uuid
         p["responses"][q11_uuid] = "bare-string-instead-of-list"
         with self.assertRaises(TallyValidationError):
             TallySchema.validate_payload(p)
@@ -801,7 +795,7 @@ class TestTallyNegativeBoundaries(unittest.TestCase):
         """NEG-14: Missing required Likert question in completed payload raises TallyValidationError."""
         p = dict(self.valid_payload)
         p["responses"] = dict(self.valid_payload["responses"])
-        del p["responses"]["748c69c8-0062-4bd3-9587-f76778ca3117"]  # delete PU1
+        del p["responses"][TallySchema.LIKERT_QUESTIONS[0].group_uuid]  # delete first likert item
         with self.assertRaises(TallyValidationError):
             TallySchema.validate_payload(p)
 

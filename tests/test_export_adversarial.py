@@ -175,12 +175,12 @@ class TestExportFormatRigor(unittest.TestCase):
 
             self.assertEqual(len(rows), 81, "Expected 1 header row + 80 data rows")
             header = rows[0]
-            self.assertEqual(len(header), 73, f"Expected exactly 73 columns, got {len(header)}")
+            self.assertEqual(len(header), 72, f"Expected exactly 72 columns, got {len(header)}")
 
             for row_idx, row in enumerate(rows[1:], start=1):
                 self.assertEqual(
-                    len(row), 73,
-                    f"Row {row_idx} length mismatch: got {len(row)}, expected 73"
+                    len(row), 72,
+                    f"Row {row_idx} length mismatch: got {len(row)}, expected 72"
                 )
                 for col_idx, cell_str in enumerate(row):
                     col_name = header[col_idx]
@@ -239,9 +239,9 @@ class TestExportFormatRigor(unittest.TestCase):
             rows = s1_root.findall(".//ns:row", ns)
             self.assertEqual(len(rows), 81, "Sheet 1 should contain 1 header + 80 data rows")
 
-            # Check header row has 73 columns
+            # Check header row has 72 columns
             header_cells = rows[0].findall("ns:c", ns)
-            self.assertEqual(len(header_cells), 73, "Sheet 1 header cell count mismatch")
+            self.assertEqual(len(header_cells), 72, "Sheet 1 header cell count mismatch")
 
             # Check data rows cells are numeric ('n' or absent t attribute)
             for r in rows[1:]:
@@ -258,8 +258,8 @@ class TestExportFormatRigor(unittest.TestCase):
         df_data = ExportService.to_numeric_matrix(self.profiles)
         df_cb = ExportService.get_variable_codebook()
 
-        self.assertEqual(len(df_data.columns), 73)
-        self.assertEqual(len(df_cb), 73)
+        self.assertEqual(len(df_data.columns), 72)
+        self.assertEqual(len(df_cb), 72)
 
         data_cols = list(df_data.columns)
         codebook_vars = list(df_cb["Variable Name"].values)
@@ -272,13 +272,13 @@ class TestExportBoundaryAndFuzzingResilience(unittest.TestCase):
     def test_empty_dataset_across_all_export_formats(self):
         """Verify empty records input produces valid empty outputs without unhandled exceptions."""
         df_empty = ExportService.to_numeric_matrix([])
-        self.assertEqual(df_empty.shape, (0, 73))
+        self.assertEqual(df_empty.shape, (0, 72))
 
         csv_empty = ExportService.export_spss_csv([])
         self.assertTrue(csv_empty.startswith(b"\xef\xbb\xbf"))
         lines = csv_empty.decode("utf-8-sig").strip().splitlines()
         self.assertEqual(len(lines), 1, "Empty CSV should contain only 1 line (headers)")
-        self.assertEqual(len(lines[0].split(",")), 73)
+        self.assertEqual(len(lines[0].split(",")), 72)
 
         excel_empty = ExportService.export_excel([])
         with zipfile.ZipFile(io.BytesIO(excel_empty)) as zf:
@@ -290,7 +290,7 @@ class TestExportBoundaryAndFuzzingResilience(unittest.TestCase):
         p = PersonaEngine(seed=101).generate_respondent()
 
         df_single = ExportService.to_numeric_matrix([p])
-        self.assertEqual(df_single.shape, (1, 73))
+        self.assertEqual(df_single.shape, (1, 72))
         self.assertEqual(df_single["Respondent_ID"].iloc[0], 1)
 
         csv_single = ExportService.export_spss_csv([p])
@@ -303,7 +303,7 @@ class TestExportBoundaryAndFuzzingResilience(unittest.TestCase):
         # Psychometric summary with N=1 records
         c_sum, it_sum = ExportService.get_psychometric_summary(records=[p])
         self.assertEqual(len(c_sum), 12)
-        self.assertEqual(len(it_sum), 39)
+        self.assertEqual(len(it_sum), 38)
 
     def test_incomplete_and_malformed_respondents_graceful_handling(self):
         """Verify robust fallbacks when records have missing fields, alien types, or partial keys."""
@@ -335,7 +335,7 @@ class TestExportBoundaryAndFuzzingResilience(unittest.TestCase):
         ]
 
         df = ExportService.to_numeric_matrix(records)
-        self.assertEqual(df.shape, (len(records), 73))
+        self.assertEqual(df.shape, (len(records), 72))
         self.assertFalse(df.isna().any().any(), "Fuzzed matrix contains unexpected NaN values")
 
         # Verify all cells are numeric
@@ -351,7 +351,7 @@ class TestExportBoundaryAndFuzzingResilience(unittest.TestCase):
         profiles = [engine.generate_respondent() for _ in range(2000)]
 
         df = ExportService.to_numeric_matrix(profiles)
-        self.assertEqual(df.shape, (2000, 73))
+        self.assertEqual(df.shape, (2000, 72))
         self.assertEqual(df["Respondent_ID"].iloc[-1], 2000)
         self.assertFalse(df.isna().any().any())
 

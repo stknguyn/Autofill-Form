@@ -568,7 +568,7 @@ with st.sidebar:
         live_box_html = (
             '<div class="live-red-box">'
             '<b>🚨 CHẾ ĐỘ NỘP THẬT (LIVE MODE)</b><br>'
-            'Dữ liệu sẽ được gửi HTTP POST thật tới <code>api.tally.so/forms/J118j4/respond</code>. Khảo sát sẽ được ghi nhận vĩnh viễn!'
+            'Dữ liệu sẽ được gửi HTTP POST thật tới <code>api.tally.so/forms/laqVzV/respond</code>. Khảo sát sẽ được ghi nhận vĩnh viễn!'
             '</div>'
         )
         st.markdown(live_box_html, unsafe_allow_html=True)
@@ -884,12 +884,12 @@ header_html = (
     '⚡ Khảo sát Ý định sử dụng Shopee Smart Locker (Gen Z)'
     '</h2>'
     '<div style="color: #94a3b8; font-size: 0.82rem; margin-top: 2px;">'
-    'Mô hình Nghiên cứu TAM & TPB • 39 Biến Quan Sát • 11 Thang Đo • Cronbach\'s Alpha Streaming • Xuất Chuẩn SPSS & Excel'
+    'Mô hình Nghiên cứu TAM & TPB • 38 Biến Quan Sát • 11 Thang Đo • Cronbach\'s Alpha Streaming • Xuất Chuẩn SPSS & Excel'
     '</div>'
     '</div>'
     '<div>'
-    '<a href="https://tally.so/r/J118j4" target="_blank" style="text-decoration: none;">'
-    '<span class="status-pill pill-blue">🔗 MỞ BIỂU MẪU TALLY J118J4</span>'
+    '<a href="https://tally.so/r/laqVzV" target="_blank" style="text-decoration: none;">'
+    '<span class="status-pill pill-blue">🔗 MỞ BIỂU MẪU TALLY LAQVZV</span>'
     '</a>'
     '</div>'
     '</div>'
@@ -1023,7 +1023,7 @@ def render_live_kpi_cards(manager: WorkerManager):
         f'<div class="kpi-card">'
         f'<div class="kpi-top"><span class="kpi-title">Độ tin cậy Cronbach</span>{pill_a}</div>'
         f'<div class="kpi-value">α = {alpha_val:.3f}</div>'
-        f'<div class="kpi-subtext">39 câu Likert • Chuẩn NCKH {target_alpha:.2f}</div>'
+        f'<div class="kpi-subtext">38 câu Likert • Chuẩn NCKH {target_alpha:.2f}</div>'
         f'</div>'
         f'<div class="kpi-card">'
         f'<div class="kpi-top"><span class="kpi-title">Tự động hóa Scheduler</span>{pill_sc}</div>'
@@ -1134,7 +1134,7 @@ with tab2:
     col_t2_head, col_t2_btn = st.columns([3.5, 1.5])
     with col_t2_head:
         st.markdown("#### 📈 Độ Tin Cậy Nội Tại & Phân Tích Thang Đo TAM & TPB")
-        st.caption(rf"39 Biến Quan Sát • 11 Thang Đo Khái Niệm • Chuẩn Cronbach's Alpha $\ge {active_threshold:.3f}$")
+        st.caption(rf"38 Biến Quan Sát • 11 Thang Đo Khái Niệm • Chuẩn Cronbach's Alpha $\ge {active_threshold:.3f}$")
     with col_t2_btn:
         if st.button("🔄 Cập Nhật Biểu Đồ", key="btn_refresh_charts", width="stretch"):
             st.rerun()
