@@ -387,6 +387,40 @@ def create_cronbach_alpha_gauge(
     """
     val = max(0.0, min(1.0, overall_alpha)) if sample_count >= 3 else 0.0
 
+    if target_threshold <= 0.790:
+        gauge_tickvals = [0.0, 0.6, 0.7, 0.76, 0.79, 1.0]
+        gauge_steps = [
+            {"range": [0.00, 0.70], "color": "rgba(239, 68, 68, 0.22)"},
+            {"range": [0.70, 0.76], "color": "rgba(245, 158, 11, 0.22)"},
+            {"range": [0.76, 0.79], "color": "rgba(16, 185, 129, 0.28)"},
+            {"range": [0.79, 1.00], "color": "rgba(239, 68, 68, 0.22)"},
+        ]
+        if 0.760 <= val <= 0.790 and sample_count >= 10:
+            status_tag = f"ĐẠT CHUẨN NCKH ({val:.3f} ∈ [0.76, 0.79])"
+            status_color = SLATE_THEME["benchmark_green"]
+        elif val > 0.790 and sample_count >= 10:
+            status_tag = f"VƯỢT TRẦN NCKH ({val:.3f} > 0.79)"
+            status_color = SLATE_THEME["warning_amber"]
+        elif sample_count < 10:
+            status_tag = "ĐANG THU THẬP MẪU"
+            status_color = SLATE_THEME["text_muted"]
+        else:
+            status_tag = "CHƯA ĐẠT NGƯỠNG [0.76 - 0.79]"
+            status_color = SLATE_THEME["danger_rose"]
+    else:
+        gauge_tickvals = [0.0, 0.6, 0.7, 0.82, 1.0]
+        gauge_steps = [
+            {"range": [0.00, 0.70], "color": "rgba(239, 68, 68, 0.22)"},
+            {"range": [0.70, 0.82], "color": "rgba(245, 158, 11, 0.22)"},
+            {"range": [0.82, 1.00], "color": "rgba(16, 185, 129, 0.28)"},
+        ]
+        status_tag = (
+            "ĐẠT CHUẨN NCKH (>= 0.820)"
+            if (val >= target_threshold and sample_count >= 10)
+            else ("ĐANG THU THẬP MẪU" if sample_count < 10 else "CHƯA ĐẠT NGƯỠNG")
+        )
+        status_color = SLATE_THEME["benchmark_green"] if val >= target_threshold else SLATE_THEME["warning_amber"]
+
     fig = go.Figure(go.Indicator(
         mode="gauge+number+delta",
         value=val,
@@ -404,7 +438,7 @@ def create_cronbach_alpha_gauge(
         gauge={
             "axis": {
                 "range": [0.0, 1.0],
-                "tickvals": [0.0, 0.6, 0.7, 0.82, 1.0],
+                "tickvals": gauge_tickvals,
                 "tickwidth": 1,
                 "tickcolor": SLATE_THEME["text_muted"],
             },
@@ -412,11 +446,7 @@ def create_cronbach_alpha_gauge(
             "bgcolor": "rgba(15, 23, 42, 0.6)",
             "borderwidth": 1,
             "bordercolor": SLATE_THEME["border"],
-            "steps": [
-                {"range": [0.00, 0.70], "color": "rgba(239, 68, 68, 0.22)"},
-                {"range": [0.70, 0.82], "color": "rgba(245, 158, 11, 0.22)"},
-                {"range": [0.82, 1.00], "color": "rgba(16, 185, 129, 0.28)"},
-            ],
+            "steps": gauge_steps,
             "threshold": {
                 "line": {"color": SLATE_THEME["benchmark_green"], "width": 4},
                 "thickness": 0.75,
@@ -424,13 +454,6 @@ def create_cronbach_alpha_gauge(
             },
         },
     ))
-
-    status_tag = (
-        "ĐẠT CHUẨN NCKH (>= 0.820)"
-        if (val >= target_threshold and sample_count >= 10)
-        else ("ĐANG THU THẬP MẪU" if sample_count < 10 else "CHƯA ĐẠT NGƯỠNG")
-    )
-    status_color = SLATE_THEME["benchmark_green"] if val >= target_threshold else SLATE_THEME["warning_amber"]
 
     fig.add_annotation(
         text=f"<span style='color:{status_color};font-weight:600;font-size:11px'>● {status_tag}</span>",
@@ -479,12 +502,22 @@ def create_construct_alpha_bars(
         cs = stats_summary.construct_stats.get(c)
         a = cs.alpha if cs else 0.0
         alphas.append(a)
-        if a >= target_threshold:
-            bar_colors.append(SLATE_THEME["benchmark_green"])
-        elif a >= 0.70:
-            bar_colors.append(SLATE_THEME["warning_amber"])
+        if target_threshold <= 0.790:
+            if 0.760 <= a <= 0.790:
+                bar_colors.append(SLATE_THEME["benchmark_green"])
+            elif a > 0.790:
+                bar_colors.append(SLATE_THEME["warning_amber"])
+            elif a >= 0.70:
+                bar_colors.append(SLATE_THEME["warning_amber"])
+            else:
+                bar_colors.append(SLATE_THEME["danger_rose"])
         else:
-            bar_colors.append(SLATE_THEME["danger_rose"])
+            if a >= target_threshold:
+                bar_colors.append(SLATE_THEME["benchmark_green"])
+            elif a >= 0.70:
+                bar_colors.append(SLATE_THEME["warning_amber"])
+            else:
+                bar_colors.append(SLATE_THEME["danger_rose"])
         text_labels.append(f"{a:.3f}")
 
     labels = [CONSTRUCT_METADATA[c]["short"] for c in construct_order]
@@ -499,7 +532,7 @@ def create_construct_alpha_bars(
         textposition="inside",
         insidetextanchor="end",
         textfont=dict(color="#ffffff", size=11, family=SLATE_THEME["font_family"]),
-        hovertemplate="<b>Thang đo %{y}</b><br>Cronbach's Alpha: <b>%{x:.3f}</b> (Chuẩn >= 0.820)<extra></extra>",
+        hovertemplate="<b>Thang đo %{y}</b><br>Cronbach's Alpha: <b>%{x:.3f}</b> " + ("(Mục tiêu [0.760, 0.790])<extra></extra>" if target_threshold <= 0.790 else "(Chuẩn >= 0.820)<extra></extra>"),
     ))
 
     # Reference Threshold Line at 0.820
@@ -508,7 +541,7 @@ def create_construct_alpha_bars(
         line_dash="dash",
         line_color=SLATE_THEME["benchmark_green"],
         line_width=2,
-        annotation_text="Chuẩn NCKH (0.820)",
+        annotation_text=f"Mục tiêu ({target_threshold:.3f})" if target_threshold <= 0.790 else "Chuẩn NCKH (0.820)",
         annotation_position="top left",
         annotation_font=dict(color=SLATE_THEME["benchmark_green"], size=10),
     )

@@ -170,6 +170,9 @@ class StatsAnalyzer:
     and SPSS-grade CITC diagnostic metrics.
     """
 
+    NCKH_ALPHA_MIN: float = 0.760
+    NCKH_ALPHA_MAX: float = 0.790
+
     CONSTRUCT_DEFS = [
         ("PU", "Perceived Usefulness (Nhận thức về sự hữu ích)", 4, False),
         ("PEOU", "Perceived Ease of Use (Nhận thức về tính dễ sử dụng)", 4, False),
@@ -290,6 +293,20 @@ class StatsAnalyzer:
         overall_alpha, _ = self._global_tracker.compute_alpha()
         res["overall"] = overall_alpha
         return res
+
+    def is_nckh_compliant(self, alpha_min: float = 0.760, alpha_max: float = 0.790) -> bool:
+        """
+        Validates whether computed Cronbach's Alpha across all 11 constructs
+        strictly falls in [alpha_min, alpha_max] and does not exceed alpha_max.
+        """
+        alphas = self.get_cronbach_alpha()
+        for code, _, _, _ in self.CONSTRUCT_DEFS:
+            val = alphas.get(code, 0.0)
+            if val < alpha_min or val > alpha_max:
+                return False
+        if alphas.get("overall", 0.0) > alpha_max:
+            return False
+        return True
 
     def get_construct_stats(self, construct_code: str) -> ConstructStats:
         """Computes comprehensive SPSS-grade construct and item statistics."""

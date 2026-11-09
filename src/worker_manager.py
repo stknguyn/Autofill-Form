@@ -216,6 +216,7 @@ class WorkerManager:
             self._scheduler = BackgroundScheduler(config=sched_cfg)
 
         self._history_records: List[Dict[str, Any]] = []
+        self._calibrated_profiles: List[RespondentProfile] = []
 
         # Per-worker mutable tracking (guarded by _state_lock)
         self._worker_records: Dict[int, Dict[str, Any]] = {}
@@ -358,6 +359,9 @@ class WorkerManager:
                 resolved_sc = self._resolve_scheduler_config(scheduler_config)
                 self._scheduler.configure(resolved_sc)
 
+            if not self._is_running:
+                self._calibrated_profiles = []
+
             self._publish_snapshot()
 
     # ------------------------------------------------------------------------
@@ -384,6 +388,26 @@ class WorkerManager:
             # Align reservation counter
             with self._quota_lock:
                 self._reserved_count = self._success_count
+
+            # If NCKH calibrated mode is active, pre-calibrate fleet profiles
+            engine_cfg = dict(self._config.demographic_weights) if isinstance(self._config.demographic_weights, dict) else {}
+            is_nckh = (
+                engine_cfg.get("nckh_mode", False)
+                or engine_cfg.get("alpha_ceiling") is not None
+                or (engine_cfg.get("alpha_threshold", 0.82) < 0.80)
+            )
+            if is_nckh and not self._calibrated_profiles:
+                m_seed = self._config.master_seed if self._config.master_seed is not None else 42
+                calibrator = PersonaEngine(
+                    config=engine_cfg,
+                    seed=m_seed,
+                    sample_size=self._config.target_count,
+                    nckh_mode=True,
+                )
+                self._calibrated_profiles = calibrator.generate_batch(
+                    sample_size=self._config.target_count,
+                    demographic_weights=engine_cfg,
+                )
 
             # Initialize worker records
             self._init_worker_records(self._config.num_workers)
@@ -515,10 +539,12 @@ class WorkerManager:
             if self._success_count >= self._config.target_count:
                 self._fleet_completed_event.set()
 
-    def _refund_work(self) -> None:
-        """Atomically releases a reservation on failure to allow another attempt."""
+    def _refund_work(self, profile: Optional[RespondentProfile] = None) -> None:
+        """Atomically releases a reservation on failure to allow another attempt and preserves calibrated profile."""
         with self._quota_lock:
             self._reserved_count = max(self._success_count, self._reserved_count - 1)
+            if profile is not None and getattr(self, "_calibrated_profiles", None) is not None:
+                self._calibrated_profiles.insert(0, profile)
 
     # ------------------------------------------------------------------------
     # Worker Loop & FSM Transitions
@@ -571,7 +597,18 @@ class WorkerManager:
             if self._config.master_seed is not None
             else None
         )
-        persona_engine = PersonaEngine(seed=w_seed)
+        engine_cfg = dict(self._config.demographic_weights) if isinstance(self._config.demographic_weights, dict) else {}
+        is_nckh = (
+            engine_cfg.get("nckh_mode", False)
+            or engine_cfg.get("alpha_ceiling") is not None
+            or (engine_cfg.get("alpha_threshold", 0.82) < 0.80)
+        )
+        persona_engine = PersonaEngine(
+            config=engine_cfg,
+            seed=w_seed,
+            sample_size=self._config.target_count if is_nckh else None,
+            nckh_mode=is_nckh if is_nckh else None,
+        )
 
         # Worker-specific JitterEngine
         jitter_cfg = self._resolve_jitter_config(self._config.jitter_config)
@@ -610,9 +647,14 @@ class WorkerManager:
             try:
                 # 4. SYNTHESIZING State
                 self._update_worker(worker_id, WorkerState.SYNTHESIZING, "Synthesizing Respondent Persona...")
-                profile = persona_engine.generate_respondent(
-                    demographic_weights=self._config.demographic_weights
-                )
+                profile = None
+                with self._quota_lock:
+                    if self._calibrated_profiles:
+                        profile = self._calibrated_profiles.pop(0)
+                if profile is None:
+                    profile = persona_engine.generate_respondent(
+                        demographic_weights=self._config.demographic_weights
+                    )
                 persona_tag = (
                     f"{'Nữ' if 'Nu' in getattr(profile, 'gender', '') else 'Nam'} | "
                     f"{getattr(profile, 'age', 21)}t | "
@@ -638,7 +680,7 @@ class WorkerManager:
                     pause_event=self._pause_event,
                 )
                 if not sleep_completed or self._stop_event.is_set():
-                    self._refund_work()
+                    self._refund_work(profile)
                     break
 
                 # Re-check pause after pacing
@@ -646,7 +688,7 @@ class WorkerManager:
                     self._update_worker(worker_id, WorkerState.IDLE, "Paused")
                     self._pause_event.wait()
                     if self._stop_event.is_set():
-                        self._refund_work()
+                        self._refund_work(profile)
                         break
 
                 # 6. SUBMITTING State
@@ -712,7 +754,7 @@ class WorkerManager:
 
             except TallyRateLimitError as exc:
                 logger.warning(f"[Worker-{worker_id:02d}] Rate limit encountered: {exc}")
-                self._refund_work()
+                self._refund_work(profile)
                 self._update_worker(
                     worker_id,
                     WorkerState.ERROR,
@@ -725,7 +767,7 @@ class WorkerManager:
 
             except (TallyServerError, TallyConnectionError, TallySubmissionError, TallyClientError) as exc:
                 logger.error(f"[Worker-{worker_id:02d}] Tally submission failure: {exc}")
-                self._refund_work()
+                self._refund_work(profile)
                 self._update_worker(
                     worker_id,
                     WorkerState.ERROR,
@@ -737,7 +779,7 @@ class WorkerManager:
 
             except Exception as exc:
                 logger.exception(f"[Worker-{worker_id:02d}] Unhandled exception in worker loop: {exc}")
-                self._refund_work()
+                self._refund_work(profile)
                 self._update_worker(
                     worker_id,
                     WorkerState.ERROR,

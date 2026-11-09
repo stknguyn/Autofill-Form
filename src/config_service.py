@@ -53,15 +53,17 @@ DEFAULT_SESSION_CONFIG: Dict[str, Any] = {
         "cooldown_sec": 300.0,
     },
     "demographics": {
-        "age_mean": 21.5,
-        "age_std": 2.0,
+        "min_age": 19,
+        "age_mean": 21.8,
+        "age_std": 1.9,
         "female_pct": 53,
         "hcm_pct": 50,
         "hanoi_pct": 40,
         "danang_pct": 10,
     },
     "psychometrics": {
-        "alpha_threshold": 0.820,
+        "alpha_threshold": 0.780,
+        "alpha_ceiling": 0.790,
         "construct_means": DEFAULT_CONSTRUCT_BENCHMARKS.copy(),
     },
 }
@@ -203,6 +205,8 @@ class ConfigService:
             session_state_obj["cfg_cooldown_sec"] = float(scheduler["cooldown_sec"])
 
         # Demographics
+        if "min_age" in demographics:
+            session_state_obj["cfg_min_age"] = int(demographics["min_age"])
         if "age_mean" in demographics:
             session_state_obj["cfg_age_mean"] = float(demographics["age_mean"])
         if "age_std" in demographics:
@@ -221,6 +225,10 @@ class ConfigService:
             val = float(psychometrics["alpha_threshold"])
             session_state_obj["cfg_alpha_threshold"] = val
             session_state_obj["alpha_threshold"] = val
+        if "alpha_ceiling" in psychometrics:
+            val = float(psychometrics["alpha_ceiling"])
+            session_state_obj["cfg_alpha_ceiling"] = val
+            session_state_obj["alpha_ceiling"] = val
 
         construct_means = psychometrics.get("construct_means", {})
         if isinstance(construct_means, dict):
@@ -318,15 +326,17 @@ class ConfigService:
                 "cooldown_sec": float(session_state_obj.get("cfg_cooldown_sec", 300.0)),
             },
             "demographics": {
-                "age_mean": float(session_state_obj.get("cfg_age_mean", 21.5)),
-                "age_std": float(session_state_obj.get("cfg_age_std", 2.0)),
+                "min_age": int(session_state_obj.get("cfg_min_age", 19)),
+                "age_mean": float(session_state_obj.get("cfg_age_mean", 21.8)),
+                "age_std": float(session_state_obj.get("cfg_age_std", 1.9)),
                 "female_pct": int(session_state_obj.get("cfg_female_pct", 53)),
                 "hcm_pct": int(session_state_obj.get("cfg_hcm_pct", 50)),
                 "hanoi_pct": int(session_state_obj.get("cfg_hanoi_pct", 40)),
                 "danang_pct": int(session_state_obj.get("cfg_danang_pct", 10)),
             },
             "psychometrics": {
-                "alpha_threshold": float(session_state_obj.get("cfg_alpha_threshold", 0.820)),
+                "alpha_threshold": float(session_state_obj.get("cfg_alpha_threshold", 0.780)),
+                "alpha_ceiling": float(session_state_obj.get("cfg_alpha_ceiling", 0.790)),
                 "construct_means": constructs,
             },
         }

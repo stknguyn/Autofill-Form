@@ -527,7 +527,7 @@ def get_or_init_worker_manager() -> WorkerManager:
         st.session_state.worker_manager = WorkerManager(config=default_config)
         st.session_state.action_feedback = None
         st.session_state.custom_constructs = DEFAULT_CONSTRUCT_BENCHMARKS.copy()
-        st.session_state.alpha_threshold = 0.820
+        st.session_state.alpha_threshold = float(st.session_state.get("cfg_alpha_threshold", 0.780))
 
     return st.session_state.worker_manager
 
@@ -728,13 +728,19 @@ with st.sidebar:
     # 5. TAM & TPB Latent Construct Defaults Customization
     with st.expander("📐 Tùy Biến Điểm Kỳ Vọng 11 Thang Đo TAM & TPB", expanded=False):
         st.caption(r"Tùy biến kỳ vọng điểm trung bình $\mu$ cho 11 thang đo Likert (1–6) và ngưỡng độ tin cậy NCKH.")
+        # Clamp cfg_alpha_threshold within [0.760, 0.790]
+        cur_alpha = float(st.session_state.get("cfg_alpha_threshold", 0.780))
+        if cur_alpha < 0.760 or cur_alpha > 0.790:
+            st.session_state.cfg_alpha_threshold = 0.780
+
         alpha_threshold = st.slider(
-            r"Ngưỡng Cronbach's Alpha NCKH ($\ge$ chuẩn)",
-            min_value=0.600,
-            max_value=0.950,
+            r"Ngưỡng Cronbach's Alpha NCKH (Mục tiêu [0.760 – 0.790], không vượt trần)",
+            min_value=0.760,
+            max_value=0.790,
             step=0.005,
             key="cfg_alpha_threshold",
             disabled=is_running,
+            help="Độ tin cậy NCKH được kiểm soát chặt chẽ trong khoảng [0.760, 0.790] và không vượt 0.790 theo chuẩn nghiên cứu.",
         )
         st.session_state.alpha_threshold = alpha_threshold
 
@@ -777,8 +783,8 @@ with st.sidebar:
                 ("PBC", "cfg_pbc_mean"), ("ITU", "cfg_itu_mean")
             ]:
                 st.session_state[key] = DEFAULT_CONSTRUCT_BENCHMARKS[code]
-            st.session_state.cfg_alpha_threshold = 0.820
-            st.session_state.alpha_threshold = 0.820
+            st.session_state.cfg_alpha_threshold = 0.780
+            st.session_state.alpha_threshold = 0.780
             st.session_state.custom_constructs = DEFAULT_CONSTRUCT_BENCHMARKS.copy()
             st.session_state.action_feedback = "Đã khôi phục 11 thang đo TAM&TPB về giá trị chuẩn mô hình ban đầu!"
             st.rerun()
@@ -816,12 +822,15 @@ with st.sidebar:
             gender_w = [m_ratio, f_ratio, o_ratio]
 
             demo_w = {
+                "min_age": int(st.session_state.get("cfg_min_age", 19)),
                 "age_mean": float(age_mean),
                 "age_std": float(age_std),
                 "gender_weights": gender_w,
                 "location_weights": loc_w,
                 "construct_means": custom_construct_means,
                 "alpha_threshold": float(alpha_threshold),
+                "alpha_ceiling": float(st.session_state.get("cfg_alpha_ceiling", 0.790)),
+                "nckh_mode": True,
             }
 
             wm.configure(
@@ -937,7 +946,7 @@ def render_live_kpi_cards(manager: WorkerManager):
     fleet_snap: WorkerFleetSnapshot = manager.get_snapshot()
     sched_snap = manager.scheduler.get_snapshot()
     stats_sum: StatsSummary = manager.get_stats_summary()
-    target_alpha = float(st.session_state.get("alpha_threshold", 0.820))
+    target_alpha = float(st.session_state.get("alpha_threshold", 0.780))
 
     succ = fleet_snap.success_count
     target = fleet_snap.total_target
@@ -975,9 +984,11 @@ def render_live_kpi_cards(manager: WorkerManager):
 
     # Pill 4: Cronbach Alpha
     alpha_val = stats_sum.overall_alpha
-    if alpha_val >= target_alpha and stats_sum.sample_count >= 10:
-        pill_a = f'<span class="status-pill pill-emerald">ĐẠT CHUẨN NCKH (>= {target_alpha:.2f})</span>'
-    elif alpha_val >= (target_alpha - 0.12) and stats_sum.sample_count >= 10:
+    if 0.760 <= alpha_val <= 0.790 and stats_sum.sample_count >= 10:
+        pill_a = f'<span class="status-pill pill-emerald">ĐẠT CHUẨN NCKH ({alpha_val:.3f} ∈ [0.76, 0.79])</span>'
+    elif alpha_val > 0.790 and stats_sum.sample_count >= 10:
+        pill_a = f'<span class="status-pill pill-amber">VƯỢT TRẦN ({alpha_val:.3f} > 0.79)</span>'
+    elif alpha_val >= 0.700 and stats_sum.sample_count >= 10:
         pill_a = '<span class="status-pill pill-amber">CHẤP NHẬN ĐƯỢC</span>'
     elif stats_sum.sample_count >= 10:
         pill_a = '<span class="status-pill pill-red">CHƯA ĐẠT CHUẨN</span>'
@@ -1023,7 +1034,7 @@ def render_live_kpi_cards(manager: WorkerManager):
         f'<div class="kpi-card">'
         f'<div class="kpi-top"><span class="kpi-title">Độ tin cậy Cronbach</span>{pill_a}</div>'
         f'<div class="kpi-value">α = {alpha_val:.3f}</div>'
-        f'<div class="kpi-subtext">38 câu Likert • Chuẩn NCKH {target_alpha:.2f}</div>'
+        f'<div class="kpi-subtext">38 câu Likert • Mục tiêu NCKH {target_alpha:.3f} (trần 0.790)</div>'
         f'</div>'
         f'<div class="kpi-card">'
         f'<div class="kpi-top"><span class="kpi-title">Tự động hóa Scheduler</span>{pill_sc}</div>'
@@ -1128,13 +1139,13 @@ with tab1:
 # TAB 2: Psychometrics & Demographics (Stable, Zero-Flicker Plotly Charts)
 # ---------------------------------------------------------------------------
 with tab2:
-    active_threshold = float(st.session_state.get("alpha_threshold", 0.820))
+    active_threshold = float(st.session_state.get("alpha_threshold", 0.780))
     active_benchmarks = st.session_state.get("custom_constructs", DEFAULT_CONSTRUCT_BENCHMARKS)
 
     col_t2_head, col_t2_btn = st.columns([3.5, 1.5])
     with col_t2_head:
         st.markdown("#### 📈 Độ Tin Cậy Nội Tại & Phân Tích Thang Đo TAM & TPB")
-        st.caption(rf"38 Biến Quan Sát • 11 Thang Đo Khái Niệm • Chuẩn Cronbach's Alpha $\ge {active_threshold:.3f}$")
+        st.caption(rf"38 Biến Quan Sát • 11 Thang Đo Khái Niệm • Mục tiêu Cronbach's Alpha $\approx {active_threshold:.3f}$ [0.760 – 0.790]")
     with col_t2_btn:
         if st.button("🔄 Cập Nhật Biểu Đồ", key="btn_refresh_charts", width="stretch"):
             st.rerun()
@@ -1157,7 +1168,7 @@ with tab2:
         # Row 1: Cronbach Alpha Radial Gauge & Construct Mini Bars
         col_g1, col_g2 = st.columns([1, 1.25])
         with col_g1:
-            st.markdown(rf"##### Hệ Số Cronbach's Alpha Toàn Mô Hình (Chuẩn $\ge {active_threshold:.3f}$)")
+            st.markdown(rf"##### Hệ Số Cronbach's Alpha Toàn Mô Hình (Mục tiêu {active_threshold:.3f} ∈ [0.760, 0.790])")
             fig_gauge = create_cronbach_alpha_gauge(
                 overall_alpha=stats_sum.overall_alpha,
                 sample_count=stats_sum.sample_count,
@@ -1167,7 +1178,7 @@ with tab2:
             st.plotly_chart(fig_gauge, width="stretch", config=PLOTLY_CONFIG, theme=None)
 
         with col_g2:
-            st.markdown(rf"##### Hệ Số Cronbach's Alpha Từng Thang Đo (Ngưỡng {active_threshold:.3f})")
+            st.markdown(rf"##### Hệ Số Cronbach's Alpha Từng Thang Đo (Mục tiêu {active_threshold:.3f})")
             fig_alpha_bars = create_construct_alpha_bars(
                 stats_summary=stats_sum,
                 target_threshold=active_threshold,
