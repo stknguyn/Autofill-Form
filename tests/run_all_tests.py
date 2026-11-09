@@ -59,6 +59,11 @@ TIER_MAP: Dict[str, int] = {
     "TestExcelMultiSheetExporter": 1,
     "TestConfigService": 1,
     "TestAppUI": 1,
+    "TestNCKHCronbachAlphaBounds": 1,
+    "TestNCKHDynamicScaleCalibration": 1,
+    "TestNCKHDemographicsAndValidation": 1,
+    "TestNCKHDeterminismAndReproducibility": 1,
+    "TestNCKHWorkerFleetAutofill": 1,
 
     # Tier 2: Boundary & Corner Cases
     "TestTallyNegativeBoundaries": 2,

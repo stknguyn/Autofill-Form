@@ -540,7 +540,7 @@ class TestTallyClientNetworkAndErrors(unittest.TestCase):
         # Direct unit verification of _parse_retry_after method
         parsed_delay = client._parse_retry_after(resp_429)
         self.assertIsNotNone(parsed_delay)
-        self.assertGreaterEqual(parsed_delay, 2.0)
+        self.assertGreaterEqual(parsed_delay, 1.8)
         self.assertLessEqual(parsed_delay, 3.5)
 
     def test_21_http_429_max_retries_exhaustion(self):

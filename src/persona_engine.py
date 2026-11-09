@@ -182,6 +182,89 @@ CONSTRUCT_CONFIGS: Tuple[ConstructConfig, ...] = (
 
 
 # ---------------------------------------------------------------------------
+# Calibrated NCKH Specification: Strictly Constrains Cronbach's Alpha [0.76, 0.79]
+# ---------------------------------------------------------------------------
+
+NCKH_CONSTRUCT_CONFIGS: Tuple[ConstructConfig, ...] = (
+    ConstructConfig(
+        "PU", ("PU1", "PU2", "PU3", "PU4"), False, 0.18, 4.65, 0.75,
+        (0.70, 0.71, 0.69, 0.71), (0.46, 0.45, 0.47, 0.45)
+    ),
+    ConstructConfig(
+        "PEOU", ("PEOU1", "PEOU2", "PEOU3", "PEOU4"), False, 0.17, 4.70, 0.70,
+        (0.70, 0.71, 0.69, 0.71), (0.46, 0.45, 0.47, 0.45)
+    ),
+    ConstructConfig(
+        "PES", ("PES1", "PES2", "PES3", "PES4"), False, 0.16, 4.75, 0.65,
+        (0.70, 0.71, 0.69, 0.71), (0.46, 0.45, 0.47, 0.45)
+    ),
+    ConstructConfig(
+        "PC", ("PC1", "PC2", "PC3"), True, -0.16, 2.35, 0.70,
+        (0.73, 0.74, 0.72), (0.41, 0.40, 0.42)
+    ),
+    ConstructConfig(
+        "PI", ("PI1", "PI2", "PI3"), False, 0.15, 4.25, 0.75,
+        (0.73, 0.74, 0.72), (0.41, 0.40, 0.42)
+    ),
+    ConstructConfig(
+        "SE", ("SE1", "SE2", "SE3", "SE4"), False, 0.17, 4.75, 0.65,
+        (0.70, 0.71, 0.69, 0.71), (0.46, 0.45, 0.47, 0.45)
+    ),
+    ConstructConfig(
+        "LC", ("LC1", "LC2", "LC3"), False, 0.16, 4.70, 0.70,
+        (0.73, 0.74, 0.72), (0.41, 0.40, 0.42)
+    ),
+    ConstructConfig(
+        "ATT", ("ATT1", "ATT2", "ATT3"), False, 0.18, 4.65, 0.70,
+        (0.73, 0.74, 0.72), (0.41, 0.40, 0.42)
+    ),
+    ConstructConfig(
+        "SN", ("SN1", "SN2", "SN3"), False, 0.16, 4.30, 0.75,
+        (0.73, 0.74, 0.72), (0.41, 0.40, 0.42)
+    ),
+    ConstructConfig(
+        "PBC", ("PBC1", "PBC2", "PBC3", "PBC4"), False, 0.17, 4.70, 0.65,
+        (0.70, 0.71, 0.69, 0.71), (0.46, 0.45, 0.47, 0.45)
+    ),
+    ConstructConfig(
+        "ITU", ("ITU1", "ITU2", "ITU3"), False, 0.18, 4.65, 0.70,
+        (0.73, 0.74, 0.72), (0.41, 0.40, 0.42)
+    ),
+)
+
+
+def calibrate_scale_bounds(
+    sample_size: int,
+    construct_means: Optional[Dict[str, float]] = None,
+) -> Dict[str, Tuple[int, int]]:
+    """
+    Dynamically calibrate and adjust the lower and upper bounds of all 11 survey measurement scales
+    based on the number of submitted samples, keeping the resulting scale distributions statistically
+    consistent with the target Cronbach's alpha range of 0.76 to 0.79.
+    """
+    n = max(1, int(sample_size))
+    bounds: Dict[str, Tuple[int, int]] = {}
+    for cfg in CONSTRUCT_CONFIGS:
+        mu = construct_means.get(cfg.code, cfg.mu) if construct_means and cfg.code in construct_means else cfg.mu
+        if mu < 3.5:  # Reverse construct (PC)
+            if n <= 25:
+                lb, ub = 2, 4
+            elif n <= 150:
+                lb, ub = 1, 4
+            else:
+                lb, ub = 1, 5
+        else:  # Standard positive constructs (PU, PEOU, PES, PI, SE, LC, ATT, SN, PBC, ITU)
+            if n <= 25:
+                lb, ub = 4, 6
+            elif n <= 150:
+                lb, ub = 3, 6
+            else:
+                lb, ub = 2, 6
+        bounds[cfg.code] = (lb, ub)
+    return bounds
+
+
+# ---------------------------------------------------------------------------
 # Respondent Profile Data Model
 # ---------------------------------------------------------------------------
 
@@ -336,7 +419,7 @@ class CrossConsistencyValidator:
             if isinstance(raw_age, (list, tuple)) and len(raw_age) > 0:
                 raw_age = raw_age[0]
             try:
-                age = int(raw_age) if raw_age is not None else 21
+                age = int(float(raw_age)) if raw_age is not None else 21
             except (ValueError, TypeError):
                 age = 21
 
@@ -390,6 +473,39 @@ class CrossConsistencyValidator:
                 f"Rule 6 Violation: 'Khong gap bat tien nao' is mutually exclusive with all other options (got {pains})."
             )
 
+        # Rule 7: Vietnamese Demographic Coherence - Higher-education completion required for state officials / civil servants (Age >= 22)
+        prof_str = str(prof).lower()
+        is_state_official = (
+            prof == OPT_PROF_VIEN_CHUC
+            or "viên chức" in prof_str
+            or "công chức" in prof_str
+            or "cán bộ" in prof_str
+            or "nhà nước" in prof_str
+        )
+        if age < 22 and is_state_official:
+            violations.append(
+                f"Rule 7 Violation: Age {age} (< 22) cannot hold state official / viên chức / công chức post ({prof})."
+            )
+        edu_str = str(edu).lower()
+        is_higher_edu = (
+            edu in (OPT_EDU_DAI_HOC, OPT_EDU_SAU_DAI_HOC)
+            or "đại học" in edu_str
+            or "cao đẳng" in edu_str
+            or "sau đại học" in edu_str
+            or "thạc sĩ" in edu_str
+            or "tiến sĩ" in edu_str
+        )
+        if is_state_official and not is_higher_edu:
+            violations.append(
+                f"Rule 7 Violation: State official / viên chức / công chức requires higher education degree (got {edu})."
+            )
+
+        # Rule 8: Minimum Respondent Age (Age >= 19)
+        if age < 19:
+            violations.append(
+                f"Rule 8 Violation: Respondent age {age} is below minimum allowed age 19."
+            )
+
         return violations
 
 
@@ -409,6 +525,8 @@ class PersonaEngine:
         seed: Optional[int] = None,
         rng: Optional[random.Random] = None,
         np_rng: Optional[np.random.Generator] = None,
+        sample_size: Optional[int] = None,
+        nckh_mode: Optional[bool] = None,
     ):
         self.config = config or {}
         TallySchema.initialize()
@@ -436,6 +554,41 @@ class PersonaEngine:
         else:
             self.np_rng = np.random.default_rng()
 
+        self.sample_size: Optional[int] = sample_size
+        if self.sample_size is None and isinstance(self.config, dict):
+            self.sample_size = self.config.get("sample_size")
+
+        psychometrics = (
+            self.config.get("psychometrics", {})
+            if isinstance(self.config, dict) and isinstance(self.config.get("psychometrics"), dict)
+            else {}
+        )
+        demographics = (
+            self.config.get("demographics", {})
+            if isinstance(self.config, dict) and isinstance(self.config.get("demographics"), dict)
+            else {}
+        )
+
+        if nckh_mode is not None:
+            self.nckh_mode: bool = bool(nckh_mode)
+        elif self.sample_size is not None:
+            self.nckh_mode = True
+        elif isinstance(self.config, dict) and (
+            self.config.get("nckh_mode", False)
+            or psychometrics.get("nckh_mode", False)
+            or self.config.get("alpha_ceiling") is not None
+            or psychometrics.get("alpha_ceiling") is not None
+            or (self.config.get("alpha_threshold", 0.82) < 0.80)
+            or (psychometrics.get("alpha_threshold", 0.82) < 0.80)
+        ):
+            self.nckh_mode = True
+        else:
+            self.nckh_mode = False
+
+        self._calibrated_buffer: List[RespondentProfile] = []
+
+    calibrate_scale_bounds = staticmethod(calibrate_scale_bounds)
+
     def seed(self, seed: Optional[int] = None) -> None:
         """Seed both internal PRNG instances for deterministic reproducibility."""
         if seed is not None:
@@ -449,6 +602,7 @@ class PersonaEngine:
         self,
         demographic_weights: Optional[Dict[str, Any]] = None,
         rng: Optional[Union[np.random.Generator, int]] = None,
+        _bypass_nckh: bool = False,
     ) -> RespondentProfile:
         """
         Generates a single fully consistent Gen Z respondent profile with demographics,
@@ -464,15 +618,61 @@ class PersonaEngine:
 
         weights = demographic_weights or {}
 
-        # 1. Tuổi (Age): Truncated Normal N(21.5, 2.0) clipped strictly within [18, 27]
+        use_nckh = (
+            not _bypass_nckh
+            and (
+                self.nckh_mode
+                or self.sample_size is not None
+                or bool(weights.get("nckh_mode", False))
+                or weights.get("alpha_ceiling") is not None
+                or (weights.get("alpha_threshold") is not None and float(weights.get("alpha_threshold")) < 0.80)
+            )
+        )
+
+        if use_nckh:
+            if not self._calibrated_buffer:
+                batch_size = self.sample_size or weights.get("sample_size") or 150
+                self._calibrated_buffer = self.generate_batch(
+                    sample_size=batch_size,
+                    demographic_weights=weights,
+                    rng=np_rng,
+                )
+            return self._calibrated_buffer.pop(0)
+
+        # 1. Tuổi (Age): Truncated Normal N(21.5, 2.0) clipped strictly within [min_age, 27]
         # Strictly guaranteed to be clean integer (type int, no float, no decimal dot or comma)
-        age_mean = float(weights.get("age_mean", 21.5))
-        age_std = float(weights.get("age_std", 2.0))
+        # R3: Set minimum respondent age to 19
+        demographics = (
+            self.config.get("demographics", {})
+            if isinstance(self.config, dict) and isinstance(self.config.get("demographics"), dict)
+            else {}
+        )
+        psychometrics = (
+            self.config.get("psychometrics", {})
+            if isinstance(self.config, dict) and isinstance(self.config.get("psychometrics"), dict)
+            else {}
+        )
+        raw_min_age = (
+            weights.get("min_age")
+            if "min_age" in weights
+            else (
+                self.config.get("min_age")
+                if isinstance(self.config, dict) and "min_age" in self.config
+                else (
+                    demographics.get("min_age", 19)
+                    if isinstance(self.config, dict)
+                    else 19
+                )
+            )
+        )
+        min_age = max(19, int(raw_min_age or 19))
+        age_mean = float(weights.get("age_mean", demographics.get("age_mean", 21.8)))
+        age_std = float(weights.get("age_std", demographics.get("age_std", 1.9)))
         sampled_age = float(np_rng.normal(age_mean, age_std))
-        age: int = int(max(18, min(27, round(sampled_age))))
+        age: int = int(max(min_age, min(27, round(sampled_age))))
 
         # 2. Giới tính (Gender): Female ~53%, Male ~44%, Other ~3%
-        gender_weights = weights.get("gender_weights", [0.44, 0.53, 0.03])
+        gender_weights = weights.get("gender_weights", demographics.get("gender_weights", [0.44, 0.53, 0.03]))
         gender_uuid = self.rng.choices(
             [OPT_GENDER_NAM, OPT_GENDER_NU, OPT_GENDER_KHAC],
             weights=gender_weights,
@@ -481,7 +681,7 @@ class PersonaEngine:
         # 3. Nơi sinh sống (Location): Strictly TP. Hồ Chí Minh, Hà Nội, Đà Nẵng only.
         # OPT_LOC_KHAC selection rate is strictly 0%.
         loc_candidates = [OPT_LOC_HCM, OPT_LOC_HANOI, OPT_LOC_DANANG]
-        raw_loc_weights = weights.get("location_weights")
+        raw_loc_weights = weights.get("location_weights", demographics.get("location_weights"))
         if raw_loc_weights and isinstance(raw_loc_weights, (list, tuple)):
             if len(raw_loc_weights) >= 3:
                 w_candidates = [float(raw_loc_weights[0]), float(raw_loc_weights[1]), float(raw_loc_weights[2])]
@@ -566,17 +766,32 @@ class PersonaEngine:
                 weights=[0.45, 0.25, 0.15, 0.10, 0.05],
             )[0]
         else:  # Full-time
-            prof_uuid = self.rng.choices(
-                [
-                    OPT_PROF_KINH_DOANH,
-                    OPT_PROF_CNTT,
-                    OPT_PROF_SAN_XUAT,
-                    OPT_PROF_GIAO_DUC,
-                    OPT_PROF_VIEN_CHUC,
-                    OPT_PROF_VU_TRANG,
-                ],
-                weights=[0.38, 0.30, 0.12, 0.10, 0.06, 0.04],
-            )[0]
+            if age < 22:
+                # Under 22 cannot hold state official / viên chức post (Rule 7)
+                prof_uuid = self.rng.choices(
+                    [
+                        OPT_PROF_KINH_DOANH,
+                        OPT_PROF_CNTT,
+                        OPT_PROF_SAN_XUAT,
+                        OPT_PROF_GIAO_DUC,
+                        OPT_PROF_VU_TRANG,
+                    ],
+                    weights=[0.42, 0.32, 0.12, 0.10, 0.04],
+                )[0]
+            else:
+                prof_uuid = self.rng.choices(
+                    [
+                        OPT_PROF_KINH_DOANH,
+                        OPT_PROF_CNTT,
+                        OPT_PROF_SAN_XUAT,
+                        OPT_PROF_GIAO_DUC,
+                        OPT_PROF_VIEN_CHUC,
+                        OPT_PROF_VU_TRANG,
+                    ],
+                    weights=[0.38, 0.30, 0.12, 0.10, 0.06, 0.04],
+                )[0]
+                if prof_uuid == OPT_PROF_VIEN_CHUC and edu_uuid not in (OPT_EDU_DAI_HOC, OPT_EDU_SAU_DAI_HOC):
+                    edu_uuid = OPT_EDU_DAI_HOC
 
         # 7. Tần suất mua sắm (Shopping Frequency):
         freq_weights = weights.get("frequency_weights", [0.10, 0.40, 0.32, 0.12, 0.06])
@@ -646,7 +861,15 @@ class PersonaEngine:
         usage_uuid = self.rng.choice(USAGE_QUALIFIED_UUIDS)
 
         # 12. Synthesize 38 Likert items via Standardized Orthogonal Latent Trait Model
-        construct_means = weights.get("construct_means") if isinstance(weights, dict) else None
+        construct_means = (
+            weights.get("construct_means")
+            if isinstance(weights, dict) and "construct_means" in weights
+            else (
+                psychometrics.get("construct_means")
+                if isinstance(psychometrics, dict) and "construct_means" in psychometrics
+                else None
+            )
+        )
         likert_scores = self._generate_likert_scores(rng=np_rng, construct_means=construct_means)
 
         # 13. Map to Tally payload responses dict
@@ -739,3 +962,225 @@ class PersonaEngine:
                 scores[item_code] = raw_score
 
         return scores
+
+    def generate_batch(
+        self,
+        sample_size: int = 150,
+        demographic_weights: Optional[Dict[str, Any]] = None,
+        rng: Optional[Union[np.random.Generator, int]] = None,
+    ) -> List[RespondentProfile]:
+        """
+        Synthesizes a complete calibrated batch of survey respondents satisfying:
+        1. Cronbach's Alpha strictly constrained within [0.76, 0.79] across all 11 measurement scales and overall.
+        2. Dynamic calibration of lower and upper bounds of all 11 measurement scales based on sample_size.
+        3. All generated item scores strictly remain within calibrated bounds.
+        4. Respondent age >= 19.
+        5. Age < 22 strictly excluded from state official / viên chức posts.
+        6. Dual-gate cross-consistency validation passes with 0 violations.
+        """
+        n = max(1, int(sample_size))
+        weights = demographic_weights or {}
+
+        if rng is None:
+            np_rng = self.np_rng
+        elif isinstance(rng, int):
+            np_rng = np.random.default_rng(rng)
+            self.rng = random.Random(rng)
+        else:
+            np_rng = rng
+
+        # 1. Calibrate scale bounds for all 11 measurement scales based on sample size n
+        construct_means = weights.get("construct_means") if isinstance(weights, dict) else None
+        bounds = calibrate_scale_bounds(n, construct_means=construct_means)
+
+        # 2. Pre-generate demographics for N respondents
+        # Temporarily bypass buffer check to generate raw consistent demographics
+        old_nckh_mode = self.nckh_mode
+        old_sample_size = self.sample_size
+        self.nckh_mode = False
+        self.sample_size = None
+
+        demographics_list: List[Dict[str, Any]] = []
+        for _ in range(n):
+            p = self.generate_respondent(demographic_weights=weights, rng=np_rng, _bypass_nckh=True)
+            demographics_list.append({
+                "age": p.age,
+                "gender": p.gender,
+                "location": p.location,
+                "education": p.education,
+                "employment": p.employment,
+                "profession": p.profession,
+                "frequency": p.frequency,
+                "categories": p.categories,
+                "pain_points": p.pain_points,
+                "awareness": p.awareness,
+                "demographics": p.demographics,
+            })
+
+        self.nckh_mode = old_nckh_mode
+        self.sample_size = old_sample_size
+
+        # 3. Latent trait synthesis for 11 constructs targeting alpha in [0.76, 0.79]
+        z_gen = np_rng.normal(0.0, 1.0, size=(n, 1))
+        batch_scores: Dict[str, np.ndarray] = {}
+
+        for cfg in NCKH_CONSTRUCT_CONFIGS:
+            k = len(cfg.item_codes)
+            lb, ub = bounds[cfg.code]
+            mu = construct_means.get(cfg.code, cfg.mu) if construct_means and cfg.code in construct_means else cfg.mu
+
+            if n >= 3:
+                def _calc_alpha(mat: np.ndarray) -> float:
+                    item_vars = np.var(mat, axis=0, ddof=1)
+                    tot_var = np.var(np.sum(mat, axis=1), ddof=1)
+                    if tot_var <= 1e-9:
+                        return 0.0
+                    return float((k / (k - 1)) * (1.0 - np.sum(item_vars) / tot_var))
+
+                best_scores = None
+                best_alpha = -999.0
+                for attempt in range(10):
+                    zeta = np_rng.normal(0.0, 1.0, size=(n, 1))
+                    z_c = cfg.rho * z_gen + np.sqrt(1.0 - cfg.rho**2) * zeta
+                    theta_c = mu + cfg.sigma * z_c
+
+                    c_scores = np.zeros((n, k), dtype=np.int32)
+                    for j, (lam, noise_sd) in enumerate(zip(cfg.loadings, cfg.noise_sigmas)):
+                        eps = np_rng.normal(0.0, noise_sd, size=(n, 1))
+                        y_star = lam * theta_c + (1.0 - lam) * mu + eps
+                        c_scores[:, j] = np.clip(np.round(y_star.ravel()), lb, ub)
+
+                    curr_alpha = _calc_alpha(c_scores)
+                    iter_count = 0
+                    max_iters = max(1000, n * 4)
+                    while (curr_alpha < 0.760 or curr_alpha > 0.790) and iter_count < max_iters:
+                        iter_count += 1
+                        idx_resp = int(np_rng.integers(0, n))
+                        idx_item = int(np_rng.integers(0, k))
+                        curr_val = int(c_scores[idx_resp, idx_item])
+                        row_mean = float(np.mean(c_scores[idx_resp, :]))
+                        if curr_alpha < 0.760:
+                            step = 1 if curr_val < row_mean else (-1 if curr_val > row_mean else (1 if np_rng.random() < 0.5 else -1))
+                        else:
+                            step = -1 if curr_val < row_mean else (1 if curr_val > row_mean else (1 if np_rng.random() < 0.5 else -1))
+                        if np_rng.random() < 0.15:
+                            step = int(np_rng.choice([-1, 1]))
+                        new_val = int(np.clip(curr_val + step, lb, ub))
+                        if new_val != curr_val:
+                            c_scores[idx_resp, idx_item] = new_val
+                            new_alpha = _calc_alpha(c_scores)
+                            accept = False
+                            if 0.760 <= new_alpha <= 0.790:
+                                accept = True
+                            elif abs(new_alpha - 0.775) < abs(curr_alpha - 0.775):
+                                accept = True
+                            elif np_rng.random() < 0.08:
+                                accept = True
+                            if accept:
+                                curr_alpha = new_alpha
+                            else:
+                                c_scores[idx_resp, idx_item] = curr_val
+
+                    if 0.760 <= curr_alpha <= 0.790:
+                        best_scores = c_scores
+                        best_alpha = curr_alpha
+                        break
+                    elif abs(curr_alpha - 0.775) < abs(best_alpha - 0.775):
+                        best_scores = c_scores.copy()
+                        best_alpha = curr_alpha
+            else:
+                zeta = np_rng.normal(0.0, 1.0, size=(n, 1))
+                z_c = cfg.rho * z_gen + np.sqrt(1.0 - cfg.rho**2) * zeta
+                theta_c = mu + cfg.sigma * z_c
+                best_scores = np.zeros((n, k), dtype=np.int32)
+                for j, (lam, noise_sd) in enumerate(zip(cfg.loadings, cfg.noise_sigmas)):
+                    eps = np_rng.normal(0.0, noise_sd, size=(n, 1))
+                    y_star = lam * theta_c + (1.0 - lam) * mu + eps
+                    best_scores[:, j] = np.clip(np.round(y_star.ravel()), lb, ub)
+
+            for j, item_code in enumerate(cfg.item_codes):
+                batch_scores[item_code] = best_scores[:, j]
+
+        # Overall decorrelation: strictly enforce overall Cronbach's Alpha <= 0.790
+        if n >= 3:
+            def _calc_overall_alpha() -> float:
+                items_mat = []
+                for c_def in NCKH_CONSTRUCT_CONFIGS:
+                    for itm in c_def.item_codes:
+                        col = batch_scores[itm].astype(np.float64).copy()
+                        if c_def.is_reverse:
+                            col = 7.0 - col
+                        items_mat.append(col)
+                mat_38 = np.column_stack(items_mat)
+                item_vars = np.var(mat_38, axis=0, ddof=1)
+                tot_var = np.var(np.sum(mat_38, axis=1), ddof=1)
+                if tot_var <= 1e-9:
+                    return 0.0
+                return float((38.0 / 37.0) * (1.0 - np.sum(item_vars) / tot_var))
+
+            ov_alpha = _calc_overall_alpha()
+            decorr_iters = 0
+            while ov_alpha > 0.790 and decorr_iters < 100:
+                decorr_iters += 1
+                for cfg in NCKH_CONSTRUCT_CONFIGS[1:]:
+                    perm = np_rng.permutation(n)
+                    for itm in cfg.item_codes:
+                        batch_scores[itm] = batch_scores[itm][perm]
+                    ov_alpha = _calc_overall_alpha()
+                    if ov_alpha <= 0.790:
+                        break
+
+        # 4. Construct RespondentProfile objects
+        profiles: List[RespondentProfile] = []
+        for i in range(n):
+            demo = demographics_list[i]
+            resp_likert: Dict[str, int] = {
+                code: int(batch_scores[code][i]) for code in batch_scores
+            }
+
+            payload_responses: Dict[str, Any] = {
+                CONSENT_QUESTION_UUID: [OPT_CONSENT_AGREE],
+                USAGE_QUESTION_UUID: [self.rng.choice(USAGE_QUALIFIED_UUIDS)],
+                AGE_QUESTION_UUID: demo["age"],
+                GENDER_QUESTION_UUID: [demo["gender"]],
+                LOCATION_QUESTION_UUID: [demo["location"]],
+                EDUCATION_QUESTION_UUID: [demo["education"]],
+                EMPLOYMENT_QUESTION_UUID: [demo["employment"]],
+                PROFESSION_QUESTION_UUID: [demo["profession"]],
+                FREQUENCY_QUESTION_UUID: [demo["frequency"]],
+                CATEGORIES_QUESTION_UUID: demo["categories"],
+                PAIN_POINTS_QUESTION_UUID: demo["pain_points"],
+                AWARENESS_QUESTION_UUID: [demo["awareness"]],
+            }
+
+            for q_def in TallySchema.LIKERT_QUESTIONS:
+                score = resp_likert[q_def.code]
+                opt_uuid = q_def.score_to_uuid[score]
+                payload_responses[q_def.group_uuid] = [opt_uuid]
+
+            profile = RespondentProfile(
+                age=demo["age"],
+                gender=demo["gender"],
+                location=demo["location"],
+                education=demo["education"],
+                employment=demo["employment"],
+                profession=demo["profession"],
+                frequency=demo["frequency"],
+                categories=demo["categories"],
+                pain_points=demo["pain_points"],
+                awareness=demo["awareness"],
+                demographics=demo["demographics"],
+                likert_scores=resp_likert,
+                payload_responses=payload_responses,
+            )
+
+            # Ensure validation passes
+            violations = CrossConsistencyValidator.validate(profile)
+            if violations:
+                raise ValueError(f"Cross-consistency failure in calibrated batch: {violations}")
+
+            profiles.append(profile)
+
+        return profiles
+
+    generate_calibrated_batch = generate_batch
